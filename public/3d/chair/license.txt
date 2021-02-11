@@ -1,0 +1,11 @@
+Model Information:
+* title:	wood chair
+* source:	https://sketchfab.com/3d-models/wood-chair-a0fa677edd6a417f869d7dcf224484c4
+* author:	jp_ayodo (https://sketchfab.com/JohnPaulJp)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "wood chair" (https://sketchfab.com/3d-models/wood-chair-a0fa677edd6a417f869d7dcf224484c4) by jp_ayodo (https://sketchfab.com/JohnPaulJp) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
