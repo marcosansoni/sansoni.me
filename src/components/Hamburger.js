@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, forwardRef } from 'react';
 import styled from 'styled-components';
 import Lottie from 'react-lottie';
 import PropTypes from 'prop-types';
@@ -6,7 +6,7 @@ import hamburger from '../lottie/hamburger.json';
 
 const Container = styled.div``;
 
-const Hamburger = (props) => {
+const Hamburger = forwardRef((props, ref) => {
   const { onToggle } = props;
   const width = 48;
   const height = 48;
@@ -30,7 +30,7 @@ const Hamburger = (props) => {
   };
 
   return (
-    <Container onClick={() => setIsStop(false)}>
+    <Container onClick={() => setIsStop(false)} ref={ref}>
       <Lottie
         options={defaultOptions}
         height={height}
@@ -46,7 +46,7 @@ const Hamburger = (props) => {
       />
     </Container>
   );
-};
+});
 
 Hamburger.propTypes = {
   onToggle: PropTypes.func,

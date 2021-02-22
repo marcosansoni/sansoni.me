@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import Color from './assets/theme/Color';
 import Hello from './components/Hello';
 import Logo from './components/Logo';
 import MenuItem from './components/MenuItem';
 import { MediaQuerySelector } from './utils/responsive';
+import NavigationMenuFullPage from './components/NavigationMenuFullPage';
+import Scroll from './components/Scroll';
 
 const Container = styled.div`
   width: 100%;
   height: 100vh;
+  top: 0;
+  left:0;
   height: calc(var(--vh, 1vh) * 100);
   background-color: ${Color.WHITE};
   position: absolute;
@@ -135,29 +139,70 @@ const SocialLink = styled(MenuItem)`
   }
 `;
 
-const Landing = () => (
-  <Container>
-    <Left>
-      <Social>
-        <SocialLink size={16} rotation={-90}>Github</SocialLink>
-        <SocialLink size={16} rotation={-90}>LinkedIn</SocialLink>
-        <SocialLink size={16} rotation={-90}>Mail</SocialLink>
-      </Social>
-    </Left>
-    <Right>
-      <Top>
-        <Logo />
-        <Links>
-          <MenuItem style={{ paddingLeft: 32 }} size={26}>ABOUT</MenuItem>
-          <MenuItem style={{ paddingLeft: 32 }} size={26}>WORK</MenuItem>
-          <MenuItem style={{ paddingLeft: 32 }} size={26}>EDUCATION</MenuItem>
-        </Links>
-      </Top>
-      <HelloContainer>
-        <Hello />
-      </HelloContainer>
-    </Right>
-  </Container>
-);
+const ScrollContainer = styled.div`
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  z-index: 1;
+  overflow: hidden;
+`;
+
+const VeryLongContent = styled.div`
+  height: 300vh;
+  background-color: lightcyan;
+`;
+
+const Landing = () => {
+  const rotateScrollRef = useRef();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      requestAnimationFrame(() => {
+        console.log(window.scrollY);
+        rotateScrollRef.current.style.transform = `rotate(${202 + (window.scrollY / 3)}deg)`;
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  return (
+    <>
+      <ScrollContainer>
+        <Scroll size={120} ref={rotateScrollRef} />
+      </ScrollContainer>
+      <Scroll />
+      <NavigationMenuFullPage />
+      <Container>
+        <Left>
+          <Social>
+            <SocialLink size={16} rotation={-90}>Github</SocialLink>
+            <SocialLink size={16} rotation={-90}>LinkedIn</SocialLink>
+            <SocialLink size={16} rotation={-90}>Mail</SocialLink>
+          </Social>
+        </Left>
+        <Right>
+          <Top>
+            <Logo />
+            <Links>
+              <MenuItem style={{ paddingLeft: 32 }} size={26}>ABOUT</MenuItem>
+              <MenuItem style={{ paddingLeft: 32 }} size={26}>WORK</MenuItem>
+              <MenuItem style={{ paddingLeft: 32 }} size={26}>EDUCATION</MenuItem>
+            </Links>
+          </Top>
+          <HelloContainer>
+            <Hello />
+          </HelloContainer>
+        </Right>
+      </Container>
+      <VeryLongContent />
+    </>
+  );
+};
 
 export default Landing;
