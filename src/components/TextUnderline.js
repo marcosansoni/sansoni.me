@@ -6,6 +6,7 @@ import Color from '../assets/theme/Color';
 const Container = styled.span`
   position: relative;
   font-size: 32px;
+  transform: translate(0px ,0%);
 
   ::before {
     content: "";
@@ -34,13 +35,13 @@ const Text = styled.p`
   position: relative;
   display: inline-block;
   background: ${`linear-gradient(to bottom, ${Color.BLACK}, ${Color.BLACK} 60%, ${Color.WHITE} 60%, ${Color.WHITE} 100%)`};
-  background-clip: text;
   -webkit-background-clip: text;
+  background-clip: text;
   color: transparent;
-  background-repeat: no-repeat;
   transition: background 0.2s ease-out;
   white-space: nowrap;
   margin: 0;
+  //transform: translate(0px, 0px);
 `;
 
 const Content = styled.div`
@@ -53,7 +54,7 @@ const TextUnderline = (props) => {
   return (
     <Content style={style} className={className}>
       <Container>
-        <Text>
+        <Text className="underline">
           {children}
         </Text>
       </Container>
