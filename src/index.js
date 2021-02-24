@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import TextUnderline from './components/TextUnderline';
+// import TextUnderline from './components/TextUnderline';
+import TextReveal from './components/TextReveal';
 // import About from './pages/About';
 // import Box from './components/Box';
 // import TitleBox from './components/TitleBox';
@@ -17,7 +18,8 @@ ReactDOM.render(
     {/* <TitleBox /> */}
     {/* <Box /> */}
     {/* <About /> */}
-    <TextUnderline />
+    <TextReveal />
+    {/* <TextUnderline /> */}
     {/* <NavigationMenuFullPage /> */}
   </React.StrictMode>,
   document.getElementById('root'),

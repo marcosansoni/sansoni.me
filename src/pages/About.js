@@ -4,6 +4,7 @@ import { TimelineLite } from 'gsap';
 import { MediaQuerySelector } from '../utils/responsive';
 import Box from '../components/Box';
 import TitleBox from '../components/TitleBox';
+import TextUnderline from '../components/TextUnderline';
 
 const Container = styled.div`
   width: 100%;
@@ -32,6 +33,12 @@ const Title = styled.div`
   height: 100px;
 `;
 
+const Content = styled.div`
+  padding: 40px;
+  font-size: 32px;
+  line-height: 48px;
+`;
+
 const About = () => {
   console.log('About');
 
@@ -55,7 +62,11 @@ const About = () => {
         <Title>
           <TitleBox timeline={titleTimeline[0]} />
         </Title>
-        <div>Ciao</div>
+        <Content>
+          I'm Marco Sansoni, an italian based <TextUnderline>Front End Developer</TextUnderline>.
+          Experienced with <TextUnderline>React</TextUnderline> and <TextUnderline>Redux</TextUnderline>, but I am always looking to learn something new.
+          Currently I am diving into Full Stack with <TextUnderline>Node</TextUnderline> and <TextUnderline>Golang</TextUnderline>.
+        </Content>
       </Box>
     </Container>
   );
