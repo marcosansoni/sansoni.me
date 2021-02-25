@@ -3,12 +3,12 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Color from '../assets/theme/Color';
 
-const Container = styled.div`
-  display: inline-flex;
+const Container = styled.span`
+  //display: inline-flex;
   position: relative;
-  font-size: 32px;
+  //font-size: 32px;
   transition: color ease-out 0.3s;
-  overflow: hidden;
+  //overflow: hidden;
 
   // ::before {
   //   content: "";

@@ -64,6 +64,7 @@ const TitleBox = (props) => {
     console.log(timeline);
     if (timeline) {
       timeline
+        // .to({}, 2, {})
         // .set(covers.current, { display: 'block' }, 0.2)
         .staggerFrom(covers.current, 0.3, {
           scaleX: 0,

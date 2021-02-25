@@ -2,9 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 // import TextUnderline from './components/TextUnderline';
-import TextReveal from './components/TextReveal';
+// import TextReveal from './components/TextReveal';
 // import TextUnderlineCover from './components/TextUnderlineCover';
-// import About from './pages/About';
+import About from './pages/About';
+// import Test from './components/Test';
 // import Box from './components/Box';
 // import TitleBox from './components/TitleBox';
 // import Scroll from './components/Scroll';
@@ -18,11 +19,12 @@ ReactDOM.render(
     {/* <Landing /> */}
     {/* <TitleBox /> */}
     {/* <Box /> */}
-    {/* <About /> */}
-    <TextReveal />
+    <About />
+    {/* <TextReveal /> */}
     {/* <TextUnderlineCover /> */}
     {/* <TextUnderline /> */}
     {/* <NavigationMenuFullPage /> */}
+    {/* <Test /> */}
   </React.StrictMode>,
   document.getElementById('root'),
 );
