@@ -7,6 +7,7 @@ import 'splitting/dist/splitting.css';
 import 'splitting/dist/splitting-cells.css';
 import PropTypes from 'prop-types';
 import { forwardRef } from 'react/cjs/react.production.min';
+import { MediaQuerySelector } from '../utils/responsive';
 
 const Container = styled.div`
   //font-size: 32px;
@@ -16,6 +17,10 @@ const Container = styled.div`
   padding-bottom: 4px;
   .whitespace{
     width: 6px;
+    
+    ${MediaQuerySelector.SMALL_AND_MEDIUM} {
+      width: 4px;
+    }
   }
 
   span {
@@ -32,14 +37,21 @@ const Content = styled.div`
 `;
 
 const Text = styled.span`
-  //font-size: 48px;
   display: inline-flex;
   flex-wrap: wrap;
   
   span {
-    height: 48px;
+    height: 42px;
     overflow: hidden;
     display: inline-flex;
+
+    ${MediaQuerySelector.MEDIUM}{
+      height: 32px;
+    };
+
+    ${MediaQuerySelector.SMALL}{
+      height: 22px;
+    }
   }
 `;
 

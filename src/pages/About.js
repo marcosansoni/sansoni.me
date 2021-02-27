@@ -71,6 +71,14 @@ const Content = styled.div`
   }
 `;
 
+const StyledUnderlined = styled(TextUnderlineCover)`
+  margin: 0 6px;
+  
+  ${MediaQuerySelector.SMALL_AND_MEDIUM}{
+    margin: 0 4px;
+  }
+`;
+
 const About = () => {
   const textRef = useRef();
   const titleTimeline = useState(new TimelineLite({ paused: false }));
@@ -133,9 +141,9 @@ const About = () => {
         </Title>
         <Content>
           <TextReveal timeline={textTimeline[0]} ref={textRef}>
-            I'm Marco Sansoni, an italian based <br style={width > 300 ? { display: 'none' } : {}} /> <TextUnderlineCover>Front End Developer</TextUnderlineCover>.
-            Experienced with <TextUnderlineCover>React</TextUnderlineCover> and <TextUnderlineCover>Redux</TextUnderlineCover>, but I am always looking to learn something new.
-            Currently I am diving into Full Stack with <TextUnderlineCover>Node</TextUnderlineCover> and <TextUnderlineCover>Golang</TextUnderlineCover>.
+            I'm Marco Sansoni, an italian based <br style={width > 300 ? { display: 'none' } : {}} /> <StyledUnderlined className="underline">Front End Developer</StyledUnderlined>.
+            Experienced with <StyledUnderlined className="underline">React</StyledUnderlined> and <StyledUnderlined className="underline">Redux</StyledUnderlined>, but I am always looking to learn something new.
+            Currently I am diving into Full Stack with <StyledUnderlined className="underline">Node</StyledUnderlined> and <StyledUnderlined className="underline">Golang</StyledUnderlined>.
           </TextReveal>
         </Content>
       </Box>
