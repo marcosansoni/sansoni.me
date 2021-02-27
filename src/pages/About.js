@@ -13,7 +13,7 @@ const Container = styled.div`
   width: 100%;
   min-height: 100vh;
   min-height: calc(var(--vh, 1vh) * 100);
-  //padding-left: 96px;
+  //padding-left: 96px;Ti
   padding-right: 96px;
   box-sizing: border-box;
   display: flex;
@@ -129,7 +129,7 @@ const About = () => {
     <Container ref={ref}>
       <Box timeline={boxTimeline[0]} width={width} height={height}>
         <Title>
-          <TitleBox timeline={titleTimeline[0]} />
+          <TitleBox timeline={titleTimeline[0]}>WHO I AM</TitleBox>
         </Title>
         <Content>
           <TextReveal timeline={textTimeline[0]} ref={textRef}>

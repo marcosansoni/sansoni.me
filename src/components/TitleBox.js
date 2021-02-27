@@ -84,7 +84,6 @@ const TitleBox = (props) => {
   }, [covers]);
 
   useEffect(() => {
-    console.log(timeline);
     if (timeline) {
       timeline
         // .to({}, 2, {})
@@ -104,17 +103,13 @@ const TitleBox = (props) => {
     }
   }, [timeline]);
 
-  // const onClick = () => timeline.play();
-
-  console.log(children, timeline);
-
   return (
     <Container>
       <Cover className="rev-cover" ref={covers}>
-        <div>WHO I AM</div>
+        <div>{children}</div>
       </Cover>
       <FullPage ref={menuRef}>
-        <div>WHO I AM</div>
+        <div>{children}</div>
       </FullPage>
     </Container>
   );

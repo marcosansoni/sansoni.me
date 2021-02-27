@@ -8,6 +8,7 @@ const Container = styled.span`
   position: relative;
   //font-size: 32px;
   transition: color ease-out 0.3s;
+  z-index: 2;
   //overflow: hidden;
 
   // ::before {
@@ -44,14 +45,14 @@ const Underline = styled.div`
   height: 4px;
   background: ${Color.DARK_ORANGE};
   transition: all 0.2s ease-out;
-  z-index: -1;
+  z-index: 1;
 `;
 
 const TextUnderlineCover = (props) => {
   const { children, style, className } = props;
   return (
     <Container style={style} className={className}>
-      {children}
+      <span style={{ zIndex: 2 }}>{children}</span>
       <Underline />
     </Container>
   );
