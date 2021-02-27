@@ -51,11 +51,22 @@ const Item = styled.div`
 
 const HamburgerContainer = styled.div`
   position: absolute;
-  top: 0;
-  right: 0;
   z-index: 20;
   opacity: 0;
   animation: showingAfterHello 2s forwards 3.7s;
+  right: 96px;
+  top: 64px;
+  
+  ${MediaQuerySelector.SMALL} {
+    right: 36px;
+    top: 24px;
+  }
+
+  ${MediaQuerySelector.MEDIUM} {
+    right: 48px;
+    top: 36px;
+  }
+  
 
   @keyframes showingAfterHello {
     from {

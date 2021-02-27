@@ -68,6 +68,17 @@ const ScrollContainer = styled.div`
   z-index: 1;
   overflow: hidden;
   padding-right: 96px;
+  opacity: 0;
+  animation: showingAfterHello 2s forwards 3.5s;
+
+  @keyframes showingAfterHello {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 
   ${MediaQuerySelector.SMALL} {
     padding-right: 48px;

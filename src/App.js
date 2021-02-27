@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import React, { useEffect, useRef } from 'react';
 import Color from './assets/theme/Color';
 import Link from './pages/Link';
-// import { MediaQuerySelector } from './utils/responsive';
 import Landing from './pages/Landing';
 import About from './pages/About';
 
@@ -16,19 +15,14 @@ const Page = styled.div`
 `;
 
 const Content = styled.div`
-  //padding: 64px 96px 64px 0;
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   overflow: auto;
-
-  
 `;
 
 const App = () => {
-  console.log('Composer of the application');
-
   const contentRef = useRef();
   const scrollRef = useRef();
 
@@ -48,7 +42,6 @@ const App = () => {
 
   return (
     <Page>
-      {/* <NavigationMenuFullPage /> */}
       <Link />
       <Content ref={contentRef}>
         <Landing ref={scrollRef} />
