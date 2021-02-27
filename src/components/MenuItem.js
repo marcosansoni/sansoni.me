@@ -75,7 +75,7 @@ const MenuItem = (props) => {
   const [height, setHeight] = useState();
 
   useEffect(() => {
-    const h = textRef?.current?.offsetHeight;
+    const h = textRef.current?.offsetHeight;
     if (h && h !== height) setHeight(h);
   }, [textRef]);
 

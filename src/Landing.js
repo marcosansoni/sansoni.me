@@ -1,12 +1,12 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import Color from './assets/theme/Color';
-import Hello from './components/Hello';
-import Logo from './components/Logo';
 import MenuItem from './components/MenuItem';
 import { MediaQuerySelector } from './utils/responsive';
 import NavigationMenuFullPage from './components/NavigationMenuFullPage';
 import Scroll from './components/Scroll';
+import About from './pages/About';
+import Hello from './pages/Landing';
 
 const Container = styled.div`
   width: 100%;
@@ -17,6 +17,7 @@ const Container = styled.div`
   background-color: ${Color.WHITE};
   position: absolute;
   display: flex;
+  overflow-y: auto;
 `;
 
 const Left = styled.div`
@@ -62,42 +63,42 @@ const Right = styled.div`
   }
 `;
 
-const Top = styled.div`
-  width: 100%;
-  height: 72px;
-  display: flex;
-  justify-content: space-between;
-  opacity: 0;
-  animation: showingAfterHello 2s forwards 3.5s;
-
-  @keyframes showingAfterHello {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  ${MediaQuerySelector.SMALL}{
-    height: 48px;
-  }
-
-  ${MediaQuerySelector.MEDIUM}{
-    height: 64px;
-  }
-`;
-
-const Links = styled.div`
-  display: flex;
-  height: 100%;
-  justify-content: flex-end;
-  align-items: center;
-  
-  ${MediaQuerySelector.SMALL} {
-    display: none;
-  }
-`;
+// const Top = styled.div`
+//   width: 100%;
+//   height: 72px;
+//   display: flex;
+//   justify-content: space-between;
+//   opacity: 0;
+//   animation: showingAfterHello 2s forwards 3.5s;
+//
+//   @keyframes showingAfterHello {
+//     from {
+//       opacity: 0;
+//     }
+//     to {
+//       opacity: 1;
+//     }
+//   }
+//
+//   ${MediaQuerySelector.SMALL}{
+//     height: 48px;
+//   }
+//
+//   ${MediaQuerySelector.MEDIUM}{
+//     height: 64px;
+//   }
+// `;
+//
+// const Links = styled.div`
+//   display: flex;
+//   height: 100%;
+//   justify-content: flex-end;
+//   align-items: center;
+//
+//   ${MediaQuerySelector.SMALL} {
+//     display: none;
+//   }
+// `;
 
 const Social = styled.div`
   display: flex;
@@ -116,12 +117,12 @@ const Social = styled.div`
   }
 `;
 
-const HelloContainer = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-`;
+// const HelloContainer = styled.div`
+//   position: absolute;
+//   top: 50%;
+//   left: 50%;
+//   transform: translate(-50%, -50%);
+// `;
 
 const SocialLink = styled(MenuItem)`
   padding-bottom: 96px;
@@ -148,9 +149,17 @@ const ScrollContainer = styled.div`
   overflow: hidden;
 `;
 
-const VeryLongContent = styled.div`
-  height: 300vh;
-  background-color: lightcyan;
+// const VeryLongContent = styled.div`
+//   height: 300vh;
+//   background-color: lightcyan;
+// `;
+
+const Page = styled.div`
+  width: 100vw;
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+  overflow: hidden;
+  position: fixed;
 `;
 
 const Landing = () => {
@@ -172,11 +181,10 @@ const Landing = () => {
   }, []);
 
   return (
-    <>
+    <Page>
       <ScrollContainer>
         <Scroll size={120} ref={rotateScrollRef} />
       </ScrollContainer>
-      <Scroll />
       <NavigationMenuFullPage />
       <Container>
         <Left>
@@ -187,21 +195,23 @@ const Landing = () => {
           </Social>
         </Left>
         <Right>
-          <Top>
-            <Logo />
-            <Links>
-              <MenuItem style={{ paddingLeft: 32 }} size={26}>ABOUT</MenuItem>
-              <MenuItem style={{ paddingLeft: 32 }} size={26}>WORK</MenuItem>
-              <MenuItem style={{ paddingLeft: 32 }} size={26}>EDUCATION</MenuItem>
-            </Links>
-          </Top>
-          <HelloContainer>
-            <Hello />
-          </HelloContainer>
+          {/* <Top> */}
+          {/*  <Logo /> */}
+          {/*  <Links> */}
+          {/*    <MenuItem style={{ paddingLeft: 32 }} size={26}>ABOUT</MenuItem> */}
+          {/*    <MenuItem style={{ paddingLeft: 32 }} size={26}>WORK</MenuItem> */}
+          {/*    <MenuItem style={{ paddingLeft: 32 }} size={26}>EDUCATION</MenuItem> */}
+          {/*  </Links> */}
+          {/* </Top> */}
+          {/* <HelloContainer> */}
+          {/*  <Hello /> */}
+          {/* </HelloContainer> */}
+          {/* <div style={{ height: '100%' }}>C</div> */}
+          <Hello />
+          <About />
         </Right>
       </Container>
-      <VeryLongContent />
-    </>
+    </Page>
   );
 };
 

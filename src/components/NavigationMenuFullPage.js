@@ -13,7 +13,7 @@ const Container = styled.div`
 
 const Cover = styled.div`
   display: none;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -36,8 +36,8 @@ const FullPage = styled.div`
   align-items: center;
   font-size: 18px;
   width: 100vw;
-  z-index: 10;
-  position: absolute;
+  z-index: -1;
+  position: fixed;
   top: 0;
   left: 0;
   background-color: white;
@@ -51,8 +51,8 @@ const Item = styled.div`
 
 const HamburgerContainer = styled.div`
   position: absolute;
-  top: 24px;
-  right: 24px;
+  top: 0;
+  right: 0;
   z-index: 20;
   opacity: 0;
   animation: showingAfterHello 2s forwards 3.7s;
@@ -86,7 +86,7 @@ const NavigationMenuFullPage = () => {
           transformOrigin: 'center left',
         }, 0.2)
         // .set(menuRef.current, { display: 'flex' }, 0.2)
-        .set(menuRef.current, { opacity: 1 })
+        .set(menuRef.current, { opacity: 1, zIndex: 10 })
         .staggerTo(covers.current, 0.3, {
           scaleX: 0,
           ease: Power3.easeOut,

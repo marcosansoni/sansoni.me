@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef, useMemo } from 'react';
 import styled from 'styled-components';
 import { TimelineLite } from 'gsap';
 import ResizeObserver from 'resize-observer-polyfill';
+import { useInView } from 'react-intersection-observer';
 import { Breakpoint, MediaQuerySelector } from '../utils/responsive';
 import Box from '../components/Box';
 import TitleBox from '../components/TitleBox';
@@ -10,9 +11,9 @@ import TextUnderlineCover from '../components/TextUnderlineCover';
 
 const Container = styled.div`
   width: 100%;
-  height: 100vh;
-  height: calc(var(--vh, 1vh) * 100);
-  padding-left: 96px;
+  min-height: 100vh;
+  min-height: calc(var(--vh, 1vh) * 100);
+  //padding-left: 96px;
   padding-right: 96px;
   box-sizing: border-box;
   display: flex;
@@ -21,12 +22,12 @@ const Container = styled.div`
   padding-bottom: 45px;
 
   ${MediaQuerySelector.SMALL}{
-    padding-left: 48px;
+    //padding-left: 48px;
     padding-right: 48px;
   }
 
   ${MediaQuerySelector.MEDIUM}{
-    padding-left: 64px;
+    //padding-left: 64px;
     padding-right: 64px;
   }
 `;
@@ -71,8 +72,6 @@ const Content = styled.div`
 `;
 
 const About = () => {
-  console.log('About');
-
   const textRef = useRef();
   const titleTimeline = useState(new TimelineLite({ paused: false }));
   const boxTimeline = useState(new TimelineLite({ paused: false }));
@@ -83,32 +82,25 @@ const About = () => {
   const [width, setWidth] = useState(520);
   const [height, setHeight] = useState(420);
 
-  // dth: 567,
-  //   height: 485,
-
-  const onVisible = () => {
-    // console.log('play');
-    masterTimeline[0].play();
-  };
+  const [ref, inView] = useInView({
+    threshold: 0.6,
+  });
 
   useEffect(() => {
-    console.log(textRef);
-    // const width = ;
-    // const height = ;
-    // setWidth(textRef.current?.offsetWidth);
-    // console.log(textRef.current?.offsetWidth);
-    // console.log(textRef.current?.offsetHeight);
-    // setHeight(textRef.current?.offsetHeight);
     if (masterTimeline) {
-      // console.log(masterTimeline);
       masterTimeline[0].add(boxTimeline)// starts at time of 0
         .add(textTimeline, 1) // starts at 1 seconds
         .add(titleTimeline, 3);// starts at 3 seconds
     }
-    onVisible();
-  });
+  }, []);
 
-  // const [widthBody, setWidthBody] = useState(0);
+  useEffect(() => {
+    if (inView) {
+      masterTimeline[0].play();
+    } else {
+      masterTimeline[0].reverse();
+    }
+  }, [inView]);
 
   const widthObserver = useMemo(() => new ResizeObserver(
     (entries) => entries.forEach((entry) => {
@@ -134,7 +126,7 @@ const About = () => {
   }, []);
 
   return (
-    <Container>
+    <Container ref={ref}>
       <Box timeline={boxTimeline[0]} width={width} height={height}>
         <Title>
           <TitleBox timeline={titleTimeline[0]} />
