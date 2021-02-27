@@ -13,10 +13,10 @@ const Container = styled.div`
   width: ${(p) => `${p.width}px`};
   height: ${(p) => `${p.height}px`};
   
-  ${MediaQuerySelector.SMALL} {
-    width: 100%;
-    height: auto;
-  }
+  // ${MediaQuerySelector.SMALL} {
+  //   width: 100%;
+  //   height: auto;
+  // }
 
   // #box path:nth-child(1) {
   //     // stroke-dasharray: ${(p) => `${p.length}px`};
@@ -49,6 +49,8 @@ const Box = forwardRef((props, ref) => {
     width,
     height,
     timeline,
+    style,
+    className,
   } = props;
 
   // console.log(timelineProps);
@@ -91,7 +93,7 @@ const Box = forwardRef((props, ref) => {
       <svg width={width} height={height} xmlns="http://www.w3.org/2000/svg">
         <rect width={width} height={height} stroke="black" fill="transparent" ref={pathRef} />
       </svg>
-      <Content>
+      <Content style={style} className={className}>
         {children}
       </Content>
     </Container>
@@ -103,12 +105,16 @@ Box.propTypes = {
   height: PropTypes.number,
   children: PropTypes.element,
   timeline: PropTypes.element.isRequired,
+  style: PropTypes.object,
+  className: PropTypes.string,
 };
 
 Box.defaultProps = {
   width: 587,
   height: 420,
   children: undefined,
+  style: undefined,
+  className: undefined,
 };
 
 export default Box;

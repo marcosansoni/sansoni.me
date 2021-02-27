@@ -3,51 +3,74 @@ import styled from 'styled-components';
 import { Power3 } from 'gsap';
 import PropTypes from 'prop-types';
 import Color from '../assets/theme/Color';
+import { MediaQuerySelector } from '../utils/responsive';
 
 const Cover = styled.div`
   display: none;
   position: absolute;
   top: 0;
   right: 0;
-  //width: 300px;
-  //height: 96px;
   box-sizing: border-box;
-  //max-width: 100%;
-  //max-height: 100%;
   background-color: ${Color.DARK_ORANGE};
   color: ${Color.DARK_ORANGE};
-  user-select: none;
   z-index: 13;
   padding: 16px 32px;
-  font-size: 48px;
-  font-weight: bold;
+
+  ${MediaQuerySelector.MEDIUM} {
+    padding: 12px 24px;
+  }
+
+  ${MediaQuerySelector.SMALL} {
+    padding: 8px 16px;
+  }
 `;
 
 const FullPage = styled.div`
-  //height: 96px;
   overflow: hidden;
   display: flex;
   opacity: 0;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 48px;
-  font-weight: bold;
-  //width: auto;
   z-index: 10;
   position: absolute;
   top: 0;
   right: 0;
   color: ${Color.WHITE};
   background-color: ${Color.BLACK};
-  user-select: none;
   padding: 16px 32px;
+
+  ${MediaQuerySelector.MEDIUM} {
+    padding: 12px 24px;
+  }
+
+  ${MediaQuerySelector.SMALL} {
+    padding: 8px 16px;
+  }
 `;
 
-const Container = styled.div``;
+const Container = styled.div`
+  font-size: 48px;
+  font-weight: bold;
+  user-select: none;
+  padding: 16px 32px;
+
+  ${MediaQuerySelector.MEDIUM} {
+    padding: 12px 24px;
+    font-size: 32px;
+  }
+
+  ${MediaQuerySelector.SMALL} {
+    padding: 8px 16px;
+    font-size: 24px;
+  }
+`;
 
 const TitleBox = (props) => {
-  const { timeline, children } = props;
+  const {
+    timeline,
+    children,
+  } = props;
 
   const covers = useRef();
   const menuRef = useRef();

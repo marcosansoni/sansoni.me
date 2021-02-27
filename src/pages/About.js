@@ -18,6 +18,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-bottom: 45px;
 
   ${MediaQuerySelector.SMALL}{
     padding-left: 48px;
@@ -36,10 +37,22 @@ const Title = styled.div`
   right: -80px;
   width: 400px;
   height: 100px;
+  
+  ${MediaQuerySelector.MEDIUM} {
+    right: -40px;
+    height: auto;
+    bottom: 10px;
+  }
+
+  ${MediaQuerySelector.SMALL} {
+    right: -20px;
+    height: auto;
+    bottom: 5px;
+  }
 `;
 
 const Content = styled.div`
-  padding: 48px;
+  padding: 46px;
   font-size: 32px;
   font-weight: bold;
   line-height: 48px;
@@ -47,13 +60,14 @@ const Content = styled.div`
   ${MediaQuerySelector.MEDIUM}{
     font-size: 26px;
     line-height: 32px;
+    padding: 42px;
   };
 
   ${MediaQuerySelector.SMALL}{
-    font-size: 14px;
+    padding: 24px;
+    font-size: 18px;
     line-height: 22px;
   }
-  
 `;
 
 const About = () => {
@@ -66,7 +80,7 @@ const About = () => {
 
   const masterTimeline = useState(new TimelineLite({ paused: true }));
 
-  const [width, setWidth] = useState(540);
+  const [width, setWidth] = useState(520);
   const [height, setHeight] = useState(420);
 
   // dth: 567,
@@ -98,16 +112,19 @@ const About = () => {
 
   const widthObserver = useMemo(() => new ResizeObserver(
     (entries) => entries.forEach((entry) => {
-      const { width: widthWindow, height: heightWindow } = entry.contentRect;
-      console.log(heightWindow);
+      const { width: widthWindow } = entry.contentRect;
       if (widthWindow <= Number(Breakpoint.SM)) {
-        setWidth(widthWindow - 164);
+        const currentWidth = Math.min(320, widthWindow - 128);
+        const incrementalHeight = (320 - currentWidth) ** 1.05;
+        setWidth(currentWidth);
+        setHeight(220 + incrementalHeight);
       } else if (widthWindow <= Number(Breakpoint.LG)
         && widthWindow >= Number(Breakpoint.SM)) {
-        setWidth(480);
-        setHeight(360);
+        setWidth(460);
+        setHeight(330);
       } else {
         setWidth(540);
+        setHeight(420);
       }
     }),
   ), []);
@@ -124,7 +141,7 @@ const About = () => {
         </Title>
         <Content>
           <TextReveal timeline={textTimeline[0]} ref={textRef}>
-            I'm Marco Sansoni, an italian based <TextUnderlineCover>Front End Developer</TextUnderlineCover>.
+            I'm Marco Sansoni, an italian based <br style={width > 300 ? { display: 'none' } : {}} /> <TextUnderlineCover>Front End Developer</TextUnderlineCover>.
             Experienced with <TextUnderlineCover>React</TextUnderlineCover> and <TextUnderlineCover>Redux</TextUnderlineCover>, but I am always looking to learn something new.
             Currently I am diving into Full Stack with <TextUnderlineCover>Node</TextUnderlineCover> and <TextUnderlineCover>Golang</TextUnderlineCover>.
           </TextReveal>
