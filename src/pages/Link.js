@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { MediaQuerySelector } from '../utils/responsive';
 import MenuItem from '../components/MenuItem';
+import useCursorRef from '../context/useCursorRef';
 
 const Left = styled.div`
   width: 96px;
@@ -63,14 +64,23 @@ const SocialLink = styled(MenuItem)`
   }
 `;
 
-const Link = () => (
-  <Left>
-    <Social>
-      <SocialLink size={16} rotation={-90}>Github</SocialLink>
-      <SocialLink size={16} rotation={-90}>LinkedIn</SocialLink>
-      <SocialLink size={16} rotation={-90}>Mail</SocialLink>
-    </Social>
-  </Left>
-);
+const Link = () => {
+  const { ref } = useCursorRef();
+
+  console.log(ref);
+
+  useEffect(() => {
+    console.log(ref);
+  }, [ref]);
+  return (
+    <Left>
+      <Social>
+        <SocialLink size={16} rotation={-90}>Github</SocialLink>
+        <SocialLink size={16} rotation={-90}>LinkedIn</SocialLink>
+        <SocialLink size={16} rotation={-90}>Mail</SocialLink>
+      </Social>
+    </Left>
+  );
+};
 
 export default Link;

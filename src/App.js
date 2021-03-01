@@ -4,6 +4,8 @@ import Color from './assets/theme/Color';
 import Link from './pages/Link';
 import Landing from './pages/Landing';
 import About from './pages/About';
+import Cursor from './components/Cursor';
+import CursorProvider from './context/CursorProvider';
 
 const Page = styled.div`
   width: 100vw;
@@ -26,6 +28,8 @@ const App = () => {
   const contentRef = useRef();
   const scrollRef = useRef();
 
+  const cursorRef = useRef();
+
   useEffect(() => {
     const handleScroll = () => {
       requestAnimationFrame(() => {
@@ -40,14 +44,22 @@ const App = () => {
     };
   }, []);
 
+  console.log(cursorRef);
+
   return (
-    <Page>
-      <Link />
-      <Content ref={contentRef}>
-        <Landing ref={scrollRef} />
-        <About />
-      </Content>
-    </Page>
+    <>
+      <Cursor ref={cursorRef} />
+      {/* eslint-disable-next-line react/no-string-refs */}
+      <CursorProvider ref={cursorRef}>
+        <Page>
+          <Link />
+          <Content ref={contentRef}>
+            <Landing ref={scrollRef} />
+            <About />
+          </Content>
+        </Page>
+      </CursorProvider>
+    </>
   );
 };
 

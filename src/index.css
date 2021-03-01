@@ -13,11 +13,15 @@ body {
 }
 
 html, body {
+    cursor: none !important;
     height: 100%;
     width: 100%;
     font-size: 14px;
     line-height: 1.21em;
     box-sizing: border-box;
+    min-height: 100%; /* requires for 'mix-blend-mode' */
+    color: #000;
+    background-color: #fff;
 }
 
 *, *:before, *:after {
