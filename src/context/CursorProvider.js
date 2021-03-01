@@ -9,6 +9,8 @@ const CursorProvider = (props) => {
 
   const context = { ref };
 
+  console.log(document.querySelectorAll('div#cursor'));
+
   return (
     <CursorContext.Provider value={context}>{children}</CursorContext.Provider>
   );

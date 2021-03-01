@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import { forwardRef } from 'react/cjs/react.production.min';
+import PropTypes from 'prop-types';
+import CursorProvider from '../context/CursorProvider';
 
 const Container = styled.div`
   position: fixed;
@@ -28,9 +29,10 @@ const Circle = styled.div`
 
 const speed = 0.4; // between 0 and 1
 
-const Cursor = forwardRef((props, ref) => {
+const Cursor = (props) => {
+  const { children } = props;
   const cursorRef = useRef();
-  // const cursorCircleRef = useRef();
+  const cursorCircleRef = useRef();
 
   const mouseX = useRef(-100); // mouse pointer's coordinates
   const mouseY = useRef(-100); // mouse pointer's coordinates
@@ -106,8 +108,7 @@ const Cursor = forwardRef((props, ref) => {
       const translate = `translate3d(${posX.current}px ,${posY.current}px, 0)`;
 
       cursorRef.current.style.transform = translate;
-      // eslint-disable-next-line no-param-reassign
-      ref.current.style.transform = rotate + scale;
+      cursorCircleRef.current.style.transform = rotate + scale;
     };
 
     const loop = () => {
@@ -117,14 +118,25 @@ const Cursor = forwardRef((props, ref) => {
 
     loop();
 
+    console.log(cursorCircleRef);
+
     return () => window.removeEventListener('mousemove', updateCoordinates);
   }, []);
 
-  console.log(ref);
+  console.log(cursorCircleRef);
 
   return (
-    <Container ref={cursorRef}><Circle ref={ref} /></Container>
+    <>
+      <Container ref={cursorRef}>
+        <Circle ref={cursorCircleRef} id="cursor" />
+      </Container>
+      <CursorProvider ref={cursorCircleRef}>{children}</CursorProvider>
+    </>
   );
-});
+};
+
+Cursor.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export default Cursor;
