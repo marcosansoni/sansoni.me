@@ -15,11 +15,20 @@ const Container = styled.div`
   //width: 320px;
   opacity: 0;
   padding-bottom: 4px;
-  .whitespace{
-    width: 6px;
-    
+  
+  // .whitespace{
+  //   width: 6px;
+  //  
+  //   ${MediaQuerySelector.SMALL_AND_MEDIUM} {
+  //     width: 4px;
+  //   }
+  // }
+  
+  .word{
+    padding-right: 6px;
+
     ${MediaQuerySelector.SMALL_AND_MEDIUM} {
-      width: 4px;
+      padding-right: 4px;
     }
   }
 

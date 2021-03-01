@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useMemo } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { TimelineLite } from 'gsap';
 import ResizeObserver from 'resize-observer-polyfill';
@@ -7,7 +7,8 @@ import { Breakpoint, MediaQuerySelector } from '../utils/responsive';
 import Box from '../components/Box';
 import TitleBox from '../components/TitleBox';
 import TextReveal from '../components/TextReveal';
-import TextUnderlineCover from '../components/TextUnderlineCover';
+import Color from '../assets/theme/Color';
+// import TextUnderlineCover from '../components/TextUnderlineCover';
 
 const Container = styled.div`
   width: 100%;
@@ -21,12 +22,12 @@ const Container = styled.div`
   justify-content: center;
   padding-bottom: 45px;
 
-  ${MediaQuerySelector.SMALL}{
+  ${MediaQuerySelector.SMALL} {
     //padding-left: 48px;
     padding-right: 48px;
   }
 
-  ${MediaQuerySelector.MEDIUM}{
+  ${MediaQuerySelector.MEDIUM} {
     //padding-left: 64px;
     padding-right: 64px;
   }
@@ -38,7 +39,7 @@ const Title = styled.div`
   right: -80px;
   width: 400px;
   height: 100px;
-  
+
   ${MediaQuerySelector.MEDIUM} {
     right: -40px;
     height: auto;
@@ -57,25 +58,42 @@ const Content = styled.div`
   font-size: 32px;
   font-weight: bold;
   line-height: 48px;
-  
-  ${MediaQuerySelector.MEDIUM}{
+
+  ${MediaQuerySelector.MEDIUM} {
     font-size: 26px;
     line-height: 32px;
     padding: 42px;
-  };
+  }
+;
 
-  ${MediaQuerySelector.SMALL}{
+  ${MediaQuerySelector.SMALL} {
     padding: 24px;
     font-size: 18px;
     line-height: 22px;
   }
-`;
-
-const StyledUnderlined = styled(TextUnderlineCover)`
-  margin: 0 6px;
   
-  ${MediaQuerySelector.SMALL_AND_MEDIUM}{
-    margin: 0 4px;
+  span{
+    position: relative;
+
+    ::before {
+      content: attr(data-word);
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      /* Setting different color than 
+         that of original text  */
+      color: ${Color.DARK_ORANGE};
+      overflow: hidden;
+
+      /* Setting width to 0*/
+      width: 0;
+      transition: 1s ease-out;
+    }
+
+    :hover::before {
+      width: 100%;
+    }
   }
 `;
 
@@ -141,9 +159,12 @@ const About = () => {
         </Title>
         <Content>
           <TextReveal timeline={textTimeline[0]} ref={textRef}>
-            I'm Marco Sansoni, an italian based <br style={width > 300 ? { display: 'none' } : {}} /> <StyledUnderlined className="underline">Front End Developer</StyledUnderlined>.
-            Experienced with <StyledUnderlined className="underline">React</StyledUnderlined> and <StyledUnderlined className="underline">Redux</StyledUnderlined>, but I am always looking to learn something new.
-            Currently I am diving into Full Stack with <StyledUnderlined className="underline">Node</StyledUnderlined> and <StyledUnderlined className="underline">Golang</StyledUnderlined>.
+            {/* I'm Marco Sansoni, an italian based <br style={width > 300 ? { display: 'none' } : {}} /> <StyledUnderlined className="underline">Front End Developer</StyledUnderlined>. */}
+            {/* Experienced with <StyledUnderlined className="underline">React</StyledUnderlined> and <StyledUnderlined className="underline">Redux</StyledUnderlined>, but I am always looking to learn something new. */}
+            {/* Currently I am diving into Full Stack with <StyledUnderlined className="underline">Node</StyledUnderlined> and <StyledUnderlined className="underline">Golang</StyledUnderlined>. */}
+            I'm Marco Sansoni, an italian based Front End Developer.
+            Experienced with React and Redux, but I am always looking to learn something new.
+            Currently I am diving into Full Stack with Node and Golang.
           </TextReveal>
         </Content>
       </Box>
