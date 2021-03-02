@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import ResizeObserver from 'resize-observer-polyfill';
 import Color from '../assets/theme/Color';
 import { Breakpoint } from '../utils/responsive';
+import useCursorRef from '../context/useCursorRef';
 
 const Container = styled.div`
   display: flex;
@@ -61,6 +62,7 @@ const Container = styled.div`
 
 const Hello = () => {
   const [width, setWidth] = useState(0);
+  const { handleLeave, handleHover } = useCursorRef();
 
   const widthObserver = useMemo(() => new ResizeObserver(
     (entries) => entries.forEach((entry) => {
@@ -81,7 +83,10 @@ const Hello = () => {
   }, []);
 
   return (
-    <Container>
+    <Container
+      onMouseEnter={() => handleHover('text')}
+      onMouseLeave={() => handleLeave('text')}
+    >
       <svg
         id="hello"
         width={width}

@@ -1,24 +1,23 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { forwardRef } from 'react';
 import CursorContext from './CursorContext';
 
-const CursorProvider = (props) => {
-  const { ref, children } = props;
+const CursorProvider = forwardRef((props, ref) => {
+  const { children } = props;
 
   console.log(ref);
 
   const context = { ref };
 
-  console.log(document.querySelectorAll('div#cursor'));
+  // console.log(document.querySelectorAll('div#cursor'));
 
   return (
     <CursorContext.Provider value={context}>{children}</CursorContext.Provider>
   );
-};
+});
 
 CursorProvider.propTypes = {
   children: PropTypes.node.isRequired,
-  ref: PropTypes.any.isRequired,
 };
 
 export default CursorProvider;

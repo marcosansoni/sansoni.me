@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { MediaQuerySelector } from '../utils/responsive';
 import MenuItem from '../components/MenuItem';
@@ -67,17 +67,24 @@ const SocialLink = styled(MenuItem)`
 const Link = () => {
   const { ref } = useCursorRef();
 
-  console.log(ref);
+  const handleHover = () => {
+    ref.current.classList.add('link');
+    ref.current.classList.add('big');
+    ref.current.offsetParent.classList.add('noMix');
+  };
 
-  useEffect(() => {
-    console.log(ref);
-  }, [ref]);
+  const handleLeave = () => {
+    ref.current.classList.remove('link');
+    ref.current.classList.remove('big');
+    ref.current.offsetParent.classList.remove('noMix');
+  };
+
   return (
     <Left>
       <Social>
-        <SocialLink size={16} rotation={-90}>Github</SocialLink>
-        <SocialLink size={16} rotation={-90}>LinkedIn</SocialLink>
-        <SocialLink size={16} rotation={-90}>Mail</SocialLink>
+        <SocialLink size={16} rotation={-90} onMouseEnter={handleHover} onMouseLeave={handleLeave}>Github</SocialLink>
+        <SocialLink size={16} rotation={-90} onMouseEnter={handleHover} onMouseLeave={handleLeave}>LinkedIn</SocialLink>
+        <SocialLink size={16} rotation={-90} onMouseEnter={handleHover} onMouseLeave={handleLeave}>Mail</SocialLink>
       </Social>
     </Left>
   );

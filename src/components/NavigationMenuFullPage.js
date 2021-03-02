@@ -4,6 +4,8 @@ import { Power3, TimelineLite } from 'gsap';
 import Hamburger from './Hamburger';
 import Color from '../assets/theme/Color';
 import { MediaQuerySelector } from '../utils/responsive';
+import useCursorRef from '../context/useCursorRef';
+import MenuItem from './MenuItem';
 
 const Container = styled.div`
   ${MediaQuerySelector.MEDIUM_AND_LARGE} {
@@ -43,11 +45,11 @@ const FullPage = styled.div`
   background-color: white;
 `;
 
-const Item = styled.div`
-  font-size: 26px;
-  padding: 24px;
-  z-index: 21;
-`;
+// const Item = styled.div`
+//   font-size: 26px;
+//   padding: 24px;
+//   z-index: 21;
+// `;
 
 const HamburgerContainer = styled.div`
   position: absolute;
@@ -82,6 +84,7 @@ const NavigationMenuFullPage = () => {
   const covers = useRef();
   const menuRef = useRef();
   const hamburgerRef = useRef();
+  const { ref: cursorRef, handleLeave, handleHover } = useCursorRef();
 
   const [timeline] = useState(new TimelineLite({ paused: true }));
 
@@ -121,21 +124,66 @@ const NavigationMenuFullPage = () => {
     }
   }, [covers]);
 
+  const handleHoverLink = () => {
+    cursorRef.current.classList.add('link');
+    cursorRef.current.classList.add('big');
+    cursorRef.current.offsetParent.classList.add('noMix');
+  };
+
+  const handleLeaveLink = () => {
+    cursorRef.current.classList.remove('link');
+    cursorRef.current.classList.remove('big');
+    cursorRef.current.offsetParent.classList.remove('noMix');
+  };
+
   const handleClickAbout = () => {
     hamburgerRef.current?.click?.();
     handleToggle();
+    handleLeaveLink();
+    setTimeout(() => {
+      document.querySelector('#aboutPage').scrollIntoView({ behavior: 'smooth' });
+    }, 500);
   };
 
   return (
     <Container>
-      <HamburgerContainer onClick={handleToggle}>
+      <HamburgerContainer
+        onClick={handleToggle}
+        onMouseEnter={() => handleHover('text')}
+        onMouseLeave={() => handleLeave('text')}
+      >
         <Hamburger ref={hamburgerRef} />
       </HamburgerContainer>
       <Cover className="rev-cover" ref={covers} />
       <FullPage ref={menuRef}>
-        <Item onClick={handleClickAbout}>ABOUT</Item>
-        <Item>WORK</Item>
-        <Item>EDUCATION</Item>
+        {/* <Item onClick={handleClickAbout}>ABOUT</Item> */}
+        {/* <Item>WORK</Item> */}
+        {/* <Item>EDUCATION</Item> */}
+        <MenuItem
+          style={{ padding: 24 }}
+          size={26}
+          onMouseEnter={handleHoverLink}
+          onMouseLeave={handleLeaveLink}
+          onClick={handleClickAbout}
+        >
+          ABOUT
+        </MenuItem>
+        <MenuItem
+          style={{ padding: 24 }}
+          size={26}
+          onMouseEnter={handleHoverLink}
+          onMouseLeave={handleLeaveLink}
+        >
+          WORK
+        </MenuItem>
+        <MenuItem
+          style={{ padding: 24 }}
+          size={26}
+          onMouseEnter={handleHoverLink}
+          onMouseLeave={handleLeaveLink}
+        >
+          EDUCATION
+        </MenuItem>
       </FullPage>
     </Container>
   );

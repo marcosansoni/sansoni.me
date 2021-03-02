@@ -12,7 +12,6 @@ const Item = styled.span`
 
 const Container = styled.a`
   position: relative;
-  cursor: pointer;
   user-select: none;
   height: ${(p) => `${p.size}px`};
   font-size: ${(p) => `${p.size}px`};
@@ -62,7 +61,7 @@ const Box = styled.div`
 `;
 
 const MenuItem = (props) => {
-  const { size, children, style, className, rotation } = props;
+  const { size, children, style, className, rotation, ...otherProps } = props;
 
   const lineRef = useRef();
   const textRef = useRef();
@@ -107,7 +106,7 @@ const MenuItem = (props) => {
 
   return (
     <>
-      <Box style={style} className={className}>
+      <Box {...otherProps} style={style} className={className}>
         <svg>
           <defs>
             <filter id={`filter-${id.current}`}>

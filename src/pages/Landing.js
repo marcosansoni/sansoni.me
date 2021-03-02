@@ -6,6 +6,7 @@ import Logo from '../components/Logo';
 import Scroll from '../components/Scroll';
 import NavigationMenuFullPage from '../components/NavigationMenuFullPage';
 import Hello from '../components/Hello';
+import useCursorRef from '../context/useCursorRef';
 
 const Container = styled.div`
   width: 100%;
@@ -105,26 +106,66 @@ const HelloContainer = styled.div`
   }
 `;
 
-const Landing = forwardRef((props, ref) => (
-  <>
-    <Container>
-      <NavigationMenuFullPage />
-      <Top>
-        <Logo />
-        <Links>
-          <MenuItem style={{ paddingLeft: 32 }} size={26}>ABOUT</MenuItem>
-          <MenuItem style={{ paddingLeft: 32 }} size={26}>WORK</MenuItem>
-          <MenuItem style={{ paddingLeft: 32 }} size={26}>EDUCATION</MenuItem>
-        </Links>
-      </Top>
-      <HelloContainer>
-        <Hello />
-      </HelloContainer>
-      <ScrollContainer>
-        <Scroll size={120} ref={ref} />
-      </ScrollContainer>
-    </Container>
-  </>
-));
+const Landing = forwardRef((props, ref) => {
+  const { ref: cursorRef, handleHover: handleHoverRef, handleLeave: handleLeaveRef } = useCursorRef();
+
+  const handleHover = () => {
+    cursorRef.current.classList.add('link');
+    cursorRef.current.classList.add('big');
+    cursorRef.current.offsetParent.classList.add('noMix');
+  };
+
+  const handleLeave = () => {
+    cursorRef.current.classList.remove('link');
+    cursorRef.current.classList.remove('big');
+    cursorRef.current.offsetParent.classList.remove('noMix');
+  };
+
+  return (
+    <>
+      <Container>
+        <NavigationMenuFullPage />
+        <Top>
+          <Logo />
+          <Links>
+            <MenuItem
+              style={{ paddingLeft: 32 }}
+              size={26}
+              onMouseEnter={handleHover}
+              onMouseLeave={handleLeave}
+            >
+              ABOUT
+            </MenuItem>
+            <MenuItem
+              style={{ paddingLeft: 32 }}
+              size={26}
+              onMouseEnter={handleHover}
+              onMouseLeave={handleLeave}
+            >
+              WORK
+            </MenuItem>
+            <MenuItem
+              style={{ paddingLeft: 32 }}
+              size={26}
+              onMouseEnter={handleHover}
+              onMouseLeave={handleLeave}
+            >
+              EDUCATION
+            </MenuItem>
+          </Links>
+        </Top>
+        <HelloContainer>
+          <Hello />
+        </HelloContainer>
+        <ScrollContainer
+          onMouseEnter={() => handleHoverRef('text')}
+          onMouseLeave={() => handleLeaveRef('text')}
+        >
+          <Scroll size={120} ref={ref} />
+        </ScrollContainer>
+      </Container>
+    </>
+  );
+});
 
 export default Landing;

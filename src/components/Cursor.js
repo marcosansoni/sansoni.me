@@ -1,7 +1,27 @@
 import React, { useEffect, useRef } from 'react';
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import PropTypes from 'prop-types';
 import CursorProvider from '../context/CursorProvider';
+import Color from '../assets/theme/Color';
+
+const GlobalStyle = createGlobalStyle`
+  .link {
+    border: ${`3px solid ${Color.DARK_ORANGE}`};
+  }
+  
+  .big{
+    width: 96px;
+    height: 96px;
+  }
+  
+  .text {
+    background-color: ${Color.WHITE};
+  }
+  
+  .noMix {
+    mix-blend-mode: normal;
+  }
+`;
 
 const Container = styled.div`
   position: fixed;
@@ -23,8 +43,8 @@ const Circle = styled.div`
   transition: opacity 0.3s cubic-bezier(0.25, 1, 0.5, 1),
   background-color 0.3s cubic-bezier(0.25, 1, 0.5, 1),
   border-color 0.3s cubic-bezier(0.25, 1, 0.5, 1),
-  width 0.3s cubic-bezier(0.25, 1, 0.5, 1),
-  height 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  width 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+  height 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 `;
 
 const speed = 0.4; // between 0 and 1
@@ -94,6 +114,8 @@ const Cursor = (props) => {
     };
 
     const updateCursor = () => {
+      // if(cursorCircleRef.current.classList)
+      // if (cursorCircleRef.current.classList.contains('link')) return;
       const diffX = Math.round(mouseX.current - posX.current);
       const diffY = Math.round(mouseY.current - posY.current);
 
@@ -123,10 +145,15 @@ const Cursor = (props) => {
     return () => window.removeEventListener('mousemove', updateCoordinates);
   }, []);
 
+  useEffect(() => {
+    console.log('AAAA', cursorCircleRef.current?.classList);
+  }, [cursorCircleRef.current?.classList]);
+
   console.log(cursorCircleRef);
 
   return (
     <>
+      <GlobalStyle />
       <Container ref={cursorRef}>
         <Circle ref={cursorCircleRef} id="cursor" />
       </Container>

@@ -8,6 +8,7 @@ import Box from '../components/Box';
 import TitleBox from '../components/TitleBox';
 import TextReveal from '../components/TextReveal';
 import Color from '../assets/theme/Color';
+import useCursorRef from '../context/useCursorRef';
 // import TextUnderlineCover from '../components/TextUnderlineCover';
 
 const Container = styled.div`
@@ -72,33 +73,34 @@ const Content = styled.div`
     line-height: 22px;
   }
   
-  span{
-    position: relative;
-
-    ::before {
-      content: attr(data-word);
-      position: absolute;
-      top: 0;
-      left: 0;
-
-      /* Setting different color than 
-         that of original text  */
-      color: ${Color.DARK_ORANGE};
-      overflow: hidden;
-
-      /* Setting width to 0*/
-      width: 0;
-      transition: 1s ease-out;
-    }
-
-    :hover::before {
-      width: 100%;
-    }
-  }
+  // span{
+  //   position: relative;
+  //
+  //   ::before {
+  //     content: attr(data-word);
+  //     position: absolute;
+  //     top: 0;
+  //     left: 0;
+  //
+  //     /* Setting different color than 
+  //        that of original text  */
+  //     color: ${Color.DARK_ORANGE};
+  //     overflow: hidden;
+  //
+  //     /* Setting width to 0*/
+  //     width: 0;
+  //     transition: 1s ease-out;
+  //   }
+  //
+  //   :hover::before {
+  //     width: 100%;
+  //   }
+  // }
 `;
 
 const About = () => {
   const textRef = useRef();
+  const { handleLeave, handleHover } = useCursorRef();
   const titleTimeline = useState(new TimelineLite({ paused: false }));
   const boxTimeline = useState(new TimelineLite({ paused: false }));
   const textTimeline = useState(new TimelineLite({ paused: false }));
@@ -152,7 +154,12 @@ const About = () => {
   }, []);
 
   return (
-    <Container ref={ref}>
+    <Container
+      ref={ref}
+      id="aboutPage"
+      onMouseEnter={() => handleHover('text')}
+      onMouseLeave={() => handleLeave('text')}
+    >
       <Box timeline={boxTimeline[0]} width={width} height={height}>
         <Title>
           <TitleBox timeline={titleTimeline[0]}>WHO I AM</TitleBox>

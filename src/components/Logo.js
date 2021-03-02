@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import Color from '../assets/theme/Color';
-import { Breakpoint, MediaQuerySelector } from '../utils/responsive';
+import { MediaQuerySelector } from '../utils/responsive';
+import useCursorRef from '../context/useCursorRef';
 
 const Box = styled.div`
   font-family: 'Pacifico', cursive;
@@ -27,26 +28,20 @@ const Box = styled.div`
     font-size: 20px;
     width: 48px;
     height: 48px;
-  };
-
-
-    // @media only screen and (max-width : ${Breakpoint.TABLET_UPPER}) and (min-width : ${Breakpoint.TABLET_LOWER}){
-  //   font-size: 28px;
-  //   width: 64px;
-  //   height: 64px;
-  // }
-  //
-    // @media only screen and (max-width : ${Breakpoint.MOBILE_UPPER}){
-    //   border: ${`2px solid ${Color.BLACK}`};
-  //   font-size: 20px;
-  //   width: 48px;
-  //   height: 48px;
-  // }
-  
+  };  
 `;
 
-const Logo = () => (
-  <Box>M.</Box>
-);
+const Logo = () => {
+  const { handleLeave, handleHover } = useCursorRef();
+
+  return (
+    <Box
+      onMouseEnter={() => handleHover('text')}
+      onMouseLeave={() => handleLeave('text')}
+    >
+      M.
+    </Box>
+  );
+};
 
 export default Logo;
