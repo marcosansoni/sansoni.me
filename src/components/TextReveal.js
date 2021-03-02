@@ -69,6 +69,8 @@ const TextReveal = forwardRef((props, ref) => {
   const {
     timeline,
     children,
+    style,
+    className,
   } = props;
 
   const textRef = useRef();
@@ -132,7 +134,7 @@ const TextReveal = forwardRef((props, ref) => {
   return (
     <Content ref={ref}>
       <Container ref={textRef}>
-        <Text>
+        <Text style={style} className={className}>
           {children}
         </Text>
       </Container>
@@ -144,10 +146,14 @@ const TextReveal = forwardRef((props, ref) => {
 TextReveal.propTypes = {
   children: PropTypes.element,
   timeline: PropTypes.element.isRequired,
+  style: PropTypes.object,
+  className: PropTypes.string,
 };
 
 TextReveal.defaultProps = {
   children: undefined,
+  style: undefined,
+  className: undefined,
 };
 
 export default TextReveal;

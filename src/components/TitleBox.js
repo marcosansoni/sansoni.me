@@ -70,6 +70,8 @@ const TitleBox = (props) => {
   const {
     timeline,
     children,
+    style,
+    className,
   } = props;
 
   const covers = useRef();
@@ -104,7 +106,7 @@ const TitleBox = (props) => {
   }, [timeline]);
 
   return (
-    <Container>
+    <Container style={style} className={className}>
       <Cover className="rev-cover" ref={covers}>
         <div>{children}</div>
       </Cover>
@@ -118,11 +120,15 @@ const TitleBox = (props) => {
 TitleBox.propTypes = {
   children: PropTypes.string,
   timeline: PropTypes.element,
+  style: PropTypes.object,
+  className: PropTypes.string,
 };
 
 TitleBox.defaultProps = {
   children: undefined,
   timeline: undefined,
+  style: undefined,
+  className: undefined,
 };
 
 export default TitleBox;
