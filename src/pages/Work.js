@@ -5,10 +5,11 @@ import ResizeObserver from 'resize-observer-polyfill';
 import { useInView } from 'react-intersection-observer';
 import { Breakpoint, MediaQuerySelector } from '../utils/responsive';
 import Box from '../components/Box';
-import TitleBox from '../components/TitleBox';
+// import TitleBox from '../components/TitleBox';
 import TextReveal from '../components/TextReveal';
 import useCursorRef from '../context/useCursorRef';
 import Color from '../assets/theme/Color';
+import TitleBox from '../components/TitleBox';
 
 const Container = styled.div`
   width: 100%;
@@ -39,7 +40,7 @@ const Title = styled.div`
   left: 0;
   //bottom: -50px;
   //right: -80px;
-  width: 400px;
+  width: 500px;
   height: 100px;
   //font-size: ;
 
@@ -71,8 +72,8 @@ const Content = styled.div`
 
   ${MediaQuerySelector.SMALL} {
     padding: 24px;
-    font-size: 18px;
-    line-height: 22px;
+    font-size: 14px;
+    line-height: 18px;
   }
 `;
 
@@ -84,6 +85,14 @@ const TitleWorkPlace = styled.div`
 const WorkPlace = styled.div`
   font-size: 32px;
   font-weight: bold;
+
+  ${MediaQuerySelector.MEDIUM}{
+    font-size: 24px;
+  };
+
+  ${MediaQuerySelector.SMALL}{
+    font-size: 20px;
+  };
 `;
 
 const Separator = styled.div`
@@ -100,6 +109,14 @@ const Period = styled.div`
   font-style: italic;
   display: flex;
   align-items: flex-end;
+
+  ${MediaQuerySelector.MEDIUM}{
+    font-size: 18px;
+  };
+
+  ${MediaQuerySelector.SMALL}{
+    font-size: 14px;
+  };
 `;
 
 const HorizontalLine = styled.div`
@@ -107,13 +124,34 @@ const HorizontalLine = styled.div`
   height: 6px;
   margin: 16px 0 8px 0;
   border-radius: 6px;
-  background-color: ${Color.DARK_ORANGE};
+  // background-color: ${Color.DARK_ORANGE};
+  background-color: ${Color.BLACK};
+
+  ${MediaQuerySelector.MEDIUM}{
+    height: 4px;
+    margin: 8px 0 6px 0;
+    border-radius: 4px;
+  };
+
+  ${MediaQuerySelector.SMALL}{
+    height: 3px;
+    margin: 8px 0 4px 0;
+    border-radius: 3px;
+  };
 `;
 
 const Paragraph = styled.div`
   font-size: 24px;
   font-weight: normal;
   margin: 8px 0 0 0;
+
+  ${MediaQuerySelector.MEDIUM}{
+    font-size: 18px;
+  };
+
+  ${MediaQuerySelector.SMALL}{
+    font-size: 14px;
+  };
 `;
 
 const StyledTextReveal = styled(TextReveal)`
@@ -130,6 +168,30 @@ const StyledTextReveal = styled(TextReveal)`
       height: 22px;
     }
   }
+`;
+
+const StyledTitle = styled(TitleBox)`
+  transform: rotate(-90deg);
+  transform-origin: top left;
+  
+  #fullPage, #cover {
+    left: -75%;
+    top: -60px;
+    right: unset;
+
+    ${MediaQuerySelector.MEDIUM}{
+      left: -50%;
+      top: -30px;
+    };
+
+    ${MediaQuerySelector.SMALL}{
+      left: -35%;
+      top: -30px;
+    };
+    
+  }
+  
+  
 `;
 
 const Work = () => {
@@ -168,14 +230,14 @@ const Work = () => {
     (entries) => entries.forEach((entry) => {
       const { width: widthWindow } = entry.contentRect;
       if (widthWindow <= Number(Breakpoint.SM)) {
-        const currentWidth = Math.min(320, widthWindow - 128);
-        const incrementalHeight = (320 - currentWidth) ** 1.05;
+        const currentWidth = Math.min(330, widthWindow - 128);
+        const incrementalHeight = (330 - currentWidth) ** 1.05;
         setWidth(currentWidth);
-        setHeight(220 + incrementalHeight);
+        setHeight(360 + incrementalHeight);
       } else if (widthWindow <= Number(Breakpoint.LG)
         && widthWindow >= Number(Breakpoint.SM)) {
-        setWidth(460);
-        setHeight(330);
+        setWidth(440);
+        setHeight(470);
       } else {
         setWidth(580);
         setHeight(510);
@@ -194,9 +256,11 @@ const Work = () => {
       onMouseEnter={() => handleHover('text')}
       onMouseLeave={() => handleLeave('text')}
     >
+
       <Box timeline={boxTimeline[0]} width={width} height={height}>
         <Title>
-          <TitleBox timeline={titleTimeline[0]}>WHERE I WORK</TitleBox>
+          <StyledTitle timeline={titleTimeline[0]}>WHERE I WORK</StyledTitle>
+          {/* <TitleBox timeline={titleTimeline[0]}>WHERE I WORK</TitleBox> */}
         </Title>
         <Content>
           <StyledTextReveal timeline={textTimeline[0]} ref={textRef}>

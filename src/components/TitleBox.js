@@ -50,6 +50,7 @@ const FullPage = styled.div`
 `;
 
 const Container = styled.div`
+  position: relative;
   font-size: 48px;
   font-weight: bold;
   user-select: none;
@@ -63,6 +64,10 @@ const Container = styled.div`
   ${MediaQuerySelector.SMALL} {
     padding: 8px 16px;
     font-size: 24px;
+  }
+  
+  #cover{
+    
   }
 `;
 
@@ -88,14 +93,11 @@ const TitleBox = (props) => {
   useEffect(() => {
     if (timeline) {
       timeline
-        // .to({}, 2, {})
-        // .set(covers.current, { display: 'block' }, 0.2)
         .staggerFrom(covers.current, 0.3, {
           scaleX: 0,
           ease: Power3.easeOut,
           transformOrigin: 'center left',
         }, 0.2)
-        // .set(menuRef.current, { display: 'flex' }, 0.2)
         .set(menuRef.current, { opacity: 1 })
         .staggerTo(covers.current, 0.3, {
           scaleX: 0,
@@ -107,10 +109,10 @@ const TitleBox = (props) => {
 
   return (
     <Container style={style} className={className}>
-      <Cover className="rev-cover" ref={covers}>
+      <Cover ref={covers} id="cover">
         <div>{children}</div>
       </Cover>
-      <FullPage ref={menuRef}>
+      <FullPage ref={menuRef} id="fullPage">
         <div>{children}</div>
       </FullPage>
     </Container>

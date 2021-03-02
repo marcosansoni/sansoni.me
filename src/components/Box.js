@@ -51,6 +51,7 @@ const Box = forwardRef((props, ref) => {
     timeline,
     style,
     className,
+    ...otherProps
   } = props;
 
   // console.log(timelineProps);
@@ -73,7 +74,7 @@ const Box = forwardRef((props, ref) => {
   }, []);
 
   return (
-    <Container length={width * 2 + height * 2} ref={ref} width={width} height={height}>
+    <Container {...otherProps} length={width * 2 + height * 2} ref={ref} width={width} height={height}>
       {/* <svg */}
       {/*  id="box" */}
       {/*  width={width} */}

@@ -24,6 +24,10 @@ html, body {
     background-color: #fff;
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 *, *:before, *:after {
     box-sizing: inherit;
     line-height: 1.21em;

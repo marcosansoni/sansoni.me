@@ -157,10 +157,14 @@ const About = () => {
     <Container
       ref={ref}
       id="aboutPage"
-      onMouseEnter={() => handleHover('text')}
-      onMouseLeave={() => handleLeave('text')}
     >
-      <Box timeline={boxTimeline[0]} width={width} height={height}>
+      <Box
+        timeline={boxTimeline[0]}
+        width={width}
+        height={height}
+        onMouseEnter={() => handleHover('text')}
+        onMouseLeave={() => handleLeave('text')}
+      >
         <Title>
           <TitleBox timeline={titleTimeline[0]}>WHO I AM</TitleBox>
         </Title>

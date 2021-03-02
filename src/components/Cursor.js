@@ -134,7 +134,7 @@ const Cursor = (props) => {
     };
 
     const loop = () => {
-      updateCursor();
+      if (cursorRef.current && cursorCircleRef.current) updateCursor();
       requestAnimationFrame(loop);
     };
 
