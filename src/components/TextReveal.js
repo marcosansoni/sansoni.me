@@ -10,19 +10,9 @@ import { forwardRef } from 'react/cjs/react.production.min';
 import { MediaQuerySelector } from '../utils/responsive';
 
 const Container = styled.div`
-  //font-size: 32px;
   width: 100%;
-  //width: 320px;
   opacity: 0;
   padding-bottom: 4px;
-  
-  // .whitespace{
-  //   width: 6px;
-  //  
-  //   ${MediaQuerySelector.SMALL_AND_MEDIUM} {
-  //     width: 4px;
-  //   }
-  // }
   
   .word{
     padding-right: 6px;
@@ -79,7 +69,6 @@ const Text = styled.span`
 `;
 
 const TextReveal = forwardRef((props, ref) => {
-  // const [timeline] = useState(new TimelineLite({ paused: true }));
   const {
     timeline,
     children,
@@ -91,31 +80,16 @@ const TextReveal = forwardRef((props, ref) => {
 
   const timelineSettings = {
     staggerValue: 0.014,
-    // staggerValue: 0.5,
     charsDuration: 2.0,
   };
 
   useEffect(() => {
-    // Splitting();
     Splitting({
       target: textRef.current,
       by: 'lines',
     });
-    // console.log(results);
 
-    // results[0].lines.forEach((line) => {
-    //   const first = line[0];
-    //   const last = line[line.length - 1];
-    //   document.insertBefore()
-    //   console.log(first, last);
-    // });
-
-    // console.log(textRef.current.querySelectorAll('.underline'));
     textRef.current.style.opacity = 1;
-
-    // Link
-    // https://github.com/codrops/TypographyMotion/blob/master/src/js/index.js
-    //   https://tympanus.net/Tutorials/TypographyMotion/
 
     timeline
       .addLabel('start')
@@ -125,14 +99,8 @@ const TextReveal = forwardRef((props, ref) => {
         ...textRef.current.querySelectorAll('.underline span'),
       ], {
         opacity: 1,
-        // y: '100%',
         paddingTop: '48px',
       }, 'switchtime')
-      // .set(textRef.current.querySelectorAll('.hide'), {
-      //   opacity: 1,
-      //   // y: '100%',
-      //   paddingTop: '48px',
-      // }, 'switchtime')
       .staggerTo([
         ...textRef.current.querySelectorAll('div span'),
         ...textRef.current.querySelectorAll('.underline span'),
@@ -140,13 +108,8 @@ const TextReveal = forwardRef((props, ref) => {
         ...textRef.current.querySelectorAll('.hide'),
       ], timelineSettings.charsDuration, {
         ease: Power3.easeOut,
-        // y: '0%',
         paddingTop: 0,
         opacity: 1,
-        // color: 'red',
-        // height: '40px',
-        // height: '40px',
-        // marginTop: '0',
       }, timelineSettings.staggerValue, 'switchtime');
   }, []);
 

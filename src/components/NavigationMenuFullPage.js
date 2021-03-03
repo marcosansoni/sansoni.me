@@ -45,12 +45,6 @@ const FullPage = styled.div`
   background-color: white;
 `;
 
-// const Item = styled.div`
-//   font-size: 26px;
-//   padding: 24px;
-//   z-index: 21;
-// `;
-
 const HamburgerContainer = styled.div`
   position: absolute;
   z-index: 20;
@@ -93,13 +87,11 @@ const NavigationMenuFullPage = () => {
   useEffect(() => {
     if (timeline) {
       timeline
-        // .set(covers.current, { display: 'block' }, 0.2)
         .staggerFrom(covers.current, 0.3, {
           scaleX: 0,
           ease: Power3.easeOut,
           transformOrigin: 'center left',
         }, 0.2)
-        // .set(menuRef.current, { display: 'flex' }, 0.2)
         .set(menuRef.current, { opacity: 1, zIndex: 10 })
         .staggerTo(covers.current, 0.3, {
           scaleX: 0,
@@ -156,9 +148,6 @@ const NavigationMenuFullPage = () => {
       </HamburgerContainer>
       <Cover className="rev-cover" ref={covers} />
       <FullPage ref={menuRef}>
-        {/* <Item onClick={handleClickAbout}>ABOUT</Item> */}
-        {/* <Item>WORK</Item> */}
-        {/* <Item>EDUCATION</Item> */}
         <MenuItem
           style={{ padding: 24 }}
           size={26}

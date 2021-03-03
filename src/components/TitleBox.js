@@ -82,8 +82,6 @@ const TitleBox = (props) => {
   const covers = useRef();
   const menuRef = useRef();
 
-  // const [timeline] = useState(new TimelineLite({ paused: true }));
-
   useEffect(() => {
     if (covers.current.style) {
       covers.current.style.display = 'block';

@@ -41,7 +41,6 @@ const Text = styled.p`
   transition: background 0.2s ease-out;
   white-space: nowrap;
   margin: 0;
-  //transform: translate(0px, 0px);
 `;
 
 const Content = styled.div`

@@ -59,43 +59,6 @@ const Cursor = (props) => {
   const posX = useRef(0); // cursor's coordinates
   const posY = useRef(0); // cursor's coordinates
 
-  // useEffect(() => {
-  //   const getAngle = (diffX, diffY) => (Math.atan2(diffY, diffX) * 180) / Math.PI;
-  //
-  //   const getSqueeze = (diffX, diffY) => {
-  //     const distance = Math.sqrt((diffX ** 2) + (diffY ** 2));
-  //     const maxSqueeze = 0.15;
-  //     const accelerator = 1500;
-  //     return Math.min(distance / accelerator, maxSqueeze);
-  //   };
-  //
-  //   const handleMove = (e) => {
-  //     const posX = e.pageX;
-  //     const posY = e.pageY;
-  //     const diffX = Math.round(posX - posY);
-  //     const diffY = Math.round(posY - posX);
-  //
-  //     pos.x += diffX * SPEED;
-  //     pos.y += diffY * SPEED;
-  //
-  //     const angle = getAngle(diffX, diffY);
-  //     const squeeze = getSqueeze(diffX, diffY);
-  //
-  //     const scale = `scale(${1 + squeeze}, ${1 - squeeze})`;
-  //     const rotate = `rotate(${angle}deg)`;
-  //     const translate = `translate3d(${pos.x}px ,${pos.y}px, 0)`;
-  //
-  //     cursor.style.transform = translate;
-  //     cursorCircle.style.transform = rotate + scale;
-  //     cursorRef.current.style.top = `${e.pageY}px`;
-  //     cursorRef.current.style.left = `${e.pageX}px`;
-  //   };
-  //
-  //   document.addEventListener('mousemove', handleMove);
-  //
-  //   return () => document.removeEventListener('mousemove', handleMove);
-  // });
-
   useEffect(() => {
     const updateCoordinates = (e) => {
       mouseX.current = e.clientX;
@@ -114,8 +77,6 @@ const Cursor = (props) => {
     };
 
     const updateCursor = () => {
-      // if(cursorCircleRef.current.classList)
-      // if (cursorCircleRef.current.classList.contains('link')) return;
       const diffX = Math.round(mouseX.current - posX.current);
       const diffY = Math.round(mouseY.current - posY.current);
 
@@ -140,16 +101,8 @@ const Cursor = (props) => {
 
     loop();
 
-    console.log(cursorCircleRef);
-
     return () => window.removeEventListener('mousemove', updateCoordinates);
   }, []);
-
-  useEffect(() => {
-    console.log('AAAA', cursorCircleRef.current?.classList);
-  }, [cursorCircleRef.current?.classList]);
-
-  console.log(cursorCircleRef);
 
   return (
     <>

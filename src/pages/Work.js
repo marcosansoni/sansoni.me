@@ -14,7 +14,6 @@ const Container = styled.div`
   width: 100%;
   min-height: 100vh;
   min-height: calc(var(--vh, 1vh) * 100);
-  //padding-left: 96px;Ti
   padding-right: 96px;
   box-sizing: border-box;
   display: flex;
@@ -23,12 +22,10 @@ const Container = styled.div`
   padding-bottom: 45px;
 
   ${MediaQuerySelector.SMALL} {
-    //padding-left: 48px;
     padding-right: 8px;
   }
 
   ${MediaQuerySelector.MEDIUM} {
-    //padding-left: 64px;
     padding-right: 64px;
   }
 `;
@@ -37,11 +34,8 @@ const Title = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  //bottom: -50px;
-  //right: -80px;
   width: 500px;
   height: 100px;
-  //font-size: ;
 
   ${MediaQuerySelector.MEDIUM} {
     right: -40px;
@@ -278,13 +272,9 @@ const Work = () => {
       >
         <Title>
           <StyledTitle timeline={titleTimeline[0]}>WHERE I WORK</StyledTitle>
-          {/* <TitleBox timeline={titleTimeline[0]}>WHERE I WORK</TitleBox> */}
         </Title>
         <Content>
           <StyledTextReveal timeline={textTimeline[0]} ref={textRef}>
-            {/* I'm Marco Sansoni, an italian based <br style={width > 300 ? { display: 'none' } : {}} /> <StyledUnderlined className="underline">Front End Developer</StyledUnderlined>. */}
-            {/* Experienced with <StyledUnderlined className="underline">React</StyledUnderlined> and <StyledUnderlined className="underline">Redux</StyledUnderlined>, but I am always looking to learn something new. */}
-            {/* Currently I am diving into Full Stack with <StyledUnderlined className="underline">Node</StyledUnderlined> and <StyledUnderlined className="underline">Golang</StyledUnderlined>. */}
             <TitleWorkPlace>
               <WorkPlace>Milkman</WorkPlace>
               <Separator className="hide" />

@@ -125,14 +125,4 @@ const Hello = () => {
   );
 };
 
-// Hello.propTypes = {
-//   width: PropTypes.number,
-//   // height: PropTypes.number,
-// };
-//
-// Hello.defaultProps = {
-//   width: 180,
-//   // height: 86,
-// };
-
 export default Hello;

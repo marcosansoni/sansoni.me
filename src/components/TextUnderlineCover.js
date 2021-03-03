@@ -4,29 +4,9 @@ import PropTypes from 'prop-types';
 import Color from '../assets/theme/Color';
 
 const Container = styled.span`
-  //display: inline-flex;
   position: relative;
-  //font-size: 32px;
   transition: color ease-out 0.3s;
   z-index: 2;
-  //overflow: hidden;
-
-  // ::before {
-  //   content: "";
-  //   position: absolute;
-  //   left: 0;
-  //   right: 0;
-  //   bottom: 0;
-  //   height: 4px;
-  //   background: ${Color.DARK_ORANGE};
-  //   transition: all 0.2s ease-out;
-  //   z-index: -1;
-  // }
-
-  //:hover::before {
-  //  height: 100%;
-  //}
-  
   :hover{
     
     div{

@@ -9,13 +9,11 @@ import TitleBox from '../components/TitleBox';
 import TextReveal from '../components/TextReveal';
 import Color from '../assets/theme/Color';
 import useCursorRef from '../context/useCursorRef';
-// import TextUnderlineCover from '../components/TextUnderlineCover';
 
 const Container = styled.div`
   width: 100%;
   min-height: 100vh;
   min-height: calc(var(--vh, 1vh) * 100);
-  //padding-left: 96px;Ti
   padding-right: 96px;
   box-sizing: border-box;
   display: flex;
@@ -24,12 +22,10 @@ const Container = styled.div`
   padding-bottom: 45px;
 
   ${MediaQuerySelector.SMALL} {
-    //padding-left: 48px;
     padding-right: 8px;
   }
 
   ${MediaQuerySelector.MEDIUM} {
-    //padding-left: 64px;
     padding-right: 64px;
   }
 `;
@@ -72,30 +68,6 @@ const Content = styled.div`
     font-size: 18px;
     line-height: 22px;
   }
-  
-  // span{
-  //   position: relative;
-  //
-  //   ::before {
-  //     content: attr(data-word);
-  //     position: absolute;
-  //     top: 0;
-  //     left: 0;
-  //
-  //     /* Setting different color than 
-  //        that of original text  */
-  //     color: ${Color.DARK_ORANGE};
-  //     overflow: hidden;
-  //
-  //     /* Setting width to 0*/
-  //     width: 0;
-  //     transition: 1s ease-out;
-  //   }
-  //
-  //   :hover::before {
-  //     width: 100%;
-  //   }
-  // }
 `;
 
 const About = () => {
@@ -170,9 +142,6 @@ const About = () => {
         </Title>
         <Content>
           <TextReveal timeline={textTimeline[0]} ref={textRef}>
-            {/* I'm Marco Sansoni, an italian based <br style={width > 300 ? { display: 'none' } : {}} /> <StyledUnderlined className="underline">Front End Developer</StyledUnderlined>. */}
-            {/* Experienced with <StyledUnderlined className="underline">React</StyledUnderlined> and <StyledUnderlined className="underline">Redux</StyledUnderlined>, but I am always looking to learn something new. */}
-            {/* Currently I am diving into Full Stack with <StyledUnderlined className="underline">Node</StyledUnderlined> and <StyledUnderlined className="underline">Golang</StyledUnderlined>. */}
             I'm Marco Sansoni, an italian based Front End Developer.
             Experienced with React and Redux, but I am always looking to learn something new.
             Currently I am diving into Full Stack with Node and Golang.

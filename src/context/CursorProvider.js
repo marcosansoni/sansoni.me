@@ -4,12 +4,7 @@ import CursorContext from './CursorContext';
 
 const CursorProvider = forwardRef((props, ref) => {
   const { children } = props;
-
-  console.log(ref);
-
   const context = { ref };
-
-  // console.log(document.querySelectorAll('div#cursor'));
 
   return (
     <CursorContext.Provider value={context}>{children}</CursorContext.Provider>
@@ -17,7 +12,7 @@ const CursorProvider = forwardRef((props, ref) => {
 });
 
 CursorProvider.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.any.isRequired,
 };
 
 export default CursorProvider;
