@@ -9,7 +9,7 @@
     "react-dom": "^17.0.1",
     "react-intersection-observer": "^8.31.0",
     "react-lottie": "^1.2.3",
-    "react-scripts": "4.0.1",
+    "react-scripts": "4.0.3",
     "resize-observer-polyfill": "^1.5.1",
     "splitting": "^1.0.6",
     "styled-components": "^5.2.1"
