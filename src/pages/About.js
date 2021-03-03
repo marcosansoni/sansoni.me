@@ -25,7 +25,7 @@ const Container = styled.div`
 
   ${MediaQuerySelector.SMALL} {
     //padding-left: 48px;
-    padding-right: 48px;
+    padding-right: 8px;
   }
 
   ${MediaQuerySelector.MEDIUM} {

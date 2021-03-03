@@ -49,6 +49,20 @@ const Text = styled.span`
   display: inline-flex;
   flex-wrap: wrap;
   
+  #university{
+    span{
+      height: 48px;
+
+      ${MediaQuerySelector.MEDIUM}{
+        height: 32px;
+      };
+
+      ${MediaQuerySelector.SMALL}{
+        height: 22px;
+      };
+    }
+  }
+  
   span {
     height: 42px;
     overflow: hidden;
@@ -109,16 +123,21 @@ const TextReveal = forwardRef((props, ref) => {
       .set([
         ...textRef.current.querySelectorAll('div span'),
         ...textRef.current.querySelectorAll('.underline span'),
-        // ...textRef.current.querySelectorAll('.underline div'),
       ], {
         opacity: 1,
         // y: '100%',
         paddingTop: '48px',
       }, 'switchtime')
+      // .set(textRef.current.querySelectorAll('.hide'), {
+      //   opacity: 1,
+      //   // y: '100%',
+      //   paddingTop: '48px',
+      // }, 'switchtime')
       .staggerTo([
         ...textRef.current.querySelectorAll('div span'),
         ...textRef.current.querySelectorAll('.underline span'),
         ...textRef.current.querySelectorAll('.underline div'),
+        ...textRef.current.querySelectorAll('.hide'),
       ], timelineSettings.charsDuration, {
         ease: Power3.easeOut,
         // y: '0%',

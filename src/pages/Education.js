@@ -35,8 +35,8 @@ const Container = styled.div`
 
 const Title = styled.div`
   position: absolute;
+  right: 0;
   top: 0;
-  left: 0;
   //bottom: -50px;
   //right: -80px;
   width: 500px;
@@ -44,20 +44,20 @@ const Title = styled.div`
   //font-size: ;
 
   ${MediaQuerySelector.MEDIUM} {
-    right: -40px;
+    //right: -40px;
     height: auto;
     bottom: 10px;
   }
 
   ${MediaQuerySelector.SMALL} {
-    right: -20px;
+    //right: -20px;
     height: auto;
     bottom: 5px;
   }
 `;
 
 const Content = styled.div`
-  padding: 46px;
+  padding: 42px 46px;
   font-size: 32px;
   font-weight: bold;
   line-height: 48px;
@@ -76,67 +76,15 @@ const Content = styled.div`
   }
 `;
 
-const TitleWorkPlace = styled.div`
-  display: flex;
-  align-items: flex-end;
-
- @media only screen and (max-width : 420px){
-   display: block;
- }
-  
-`;
-
-const WorkPlace = styled.div`
-  font-size: 32px;
-  font-weight: bold;
-
-  ${MediaQuerySelector.MEDIUM}{
-    font-size: 24px;
-  };
-
-  ${MediaQuerySelector.SMALL}{
-    font-size: 20px;
-  };
-`;
-
-const Separator = styled.div`
-  opacity: 0;
-  margin: 0 8px;
-  height: 100%;
-  width: 2px;
-  border-radius: 2px;
-  background-color: ${Color.BLACK};
-
-  @media only screen and (max-width : 420px){
-    display: none;
-  }
-`;
-
-const Period = styled.div`
-  font-size: 24px;
-  font-weight: normal;
-  font-style: italic;
-  display: flex;
-  align-items: flex-end;
-
-  ${MediaQuerySelector.MEDIUM}{
-    font-size: 18px;
-  };
-
-  ${MediaQuerySelector.SMALL}{
-    font-size: 14px;
-  };
-
-  @media only screen and (max-width : 420px){
-    font-size: 12px;
-  }
+const TitleEducation = styled.div`
+  display: block;
 `;
 
 const HorizontalLine = styled.div`
   opacity: 0;
   width: 100%;
   height: 6px;
-  margin: 16px 0 8px 0;
+  margin: 12px 0 8px 0;
   border-radius: 6px;
   overflow: hidden;
   background-color: ${Color.BLACK};
@@ -189,30 +137,108 @@ const StyledTextReveal = styled(TextReveal)`
 `;
 
 const StyledTitle = styled(TitleBox)`
-  transform: rotate(-90deg);
-  transform-origin: top left;
+  transform: rotate(90deg);
+  transform-origin: top right;
   
   #fullPage, #cover {
-    left: -75%;
-    top: -60px;
-    right: unset;
+    right: -80%;
+    top: -55px;
+    left: unset;
 
     ${MediaQuerySelector.MEDIUM}{
-      left: -50%;
+      right: -55%;
       top: -30px;
     };
 
     ${MediaQuerySelector.SMALL}{
-      left: -35%;
+      right: -40%;
       top: -25px;
     };
-    
   }
-  
-  
 `;
 
-const Work = () => {
+const University = styled.div`
+  font-size: 32px;
+  font-weight: bold;
+
+  ${MediaQuerySelector.MEDIUM}{
+    font-size: 18px;
+  };
+
+  ${MediaQuerySelector.SMALL}{
+    font-size: 14px;
+  };
+`;
+
+const Master = styled.div`
+  font-size: 24px;
+  font-weight: normal;
+  //margin: 0 0 8px 0;
+
+  ${MediaQuerySelector.MEDIUM}{
+    font-size: 18px;
+  };
+
+  ${MediaQuerySelector.SMALL}{
+    font-size: 14px;
+  };
+`;
+
+const Graduation = styled.div`
+  font-size: 22px;
+  font-weight: normal;
+  font-style: italic;
+
+  ${MediaQuerySelector.MEDIUM}{
+    font-size: 18px;
+  };
+
+  ${MediaQuerySelector.SMALL}{
+    font-size: 14px;
+  };
+`;
+
+const MasterThesis = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+
+  ${MediaQuerySelector.MEDIUM}{
+    font-size: 18px;
+    margin-top: 32px;
+    //margin-right: 6px;
+  };
+
+  ${MediaQuerySelector.SMALL}{
+    font-size: 14px;
+    margin-top: 32px;
+  };
+`;
+
+const ThesisName = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: flex-end;
+  font-style: italic;
+  font-weight: normal;
+  font-size: 18px;
+  text-align: end;
+
+  ${MediaQuerySelector.MEDIUM}{
+    font-size: 15px;
+  };
+
+  ${MediaQuerySelector.SMALL}{
+    font-size: 12px;
+  };
+`;
+
+const Education = () => {
   const textRef = useRef();
   const { handleLeave, handleHover } = useCursorRef();
   const titleTimeline = useState(new TimelineLite({ paused: false }));
@@ -248,14 +274,14 @@ const Work = () => {
     (entries) => entries.forEach((entry) => {
       const { width: widthWindow } = entry.contentRect;
       if (widthWindow <= Number(Breakpoint.SM)) {
-        const currentWidth = Math.min(330, widthWindow - 128);
-        const incrementalHeight = (330 - currentWidth) ** 1.15;
+        const currentWidth = Math.min(322, widthWindow - 128);
+        const incrementalHeight = (322 - currentWidth) ** 1.01;
         setWidth(currentWidth);
-        setHeight(360 + incrementalHeight);
+        setHeight(365 + incrementalHeight);
       } else if (widthWindow <= Number(Breakpoint.LG)
         && widthWindow >= Number(Breakpoint.SM)) {
-        setWidth(440);
-        setHeight(470);
+        setWidth(490);
+        setHeight(440);
       } else {
         setWidth(580);
         setHeight(510);
@@ -268,7 +294,7 @@ const Work = () => {
   }, []);
 
   return (
-    <Container ref={ref} id="workPage">
+    <Container ref={ref} id="educationPage">
       <Box
         timeline={boxTimeline[0]}
         width={width}
@@ -277,29 +303,28 @@ const Work = () => {
         onMouseLeave={() => handleLeave('text')}
       >
         <Title>
-          <StyledTitle timeline={titleTimeline[0]}>WHERE I WORK</StyledTitle>
-          {/* <TitleBox timeline={titleTimeline[0]}>WHERE I WORK</TitleBox> */}
+          <StyledTitle timeline={titleTimeline[0]}>WHAT I STUDIED</StyledTitle>
+          {/* <TitleBox timeline={titleTimeline[0]}>WHERE I Education</TitleBox> */}
         </Title>
         <Content>
           <StyledTextReveal timeline={textTimeline[0]} ref={textRef}>
             {/* I'm Marco Sansoni, an italian based <br style={width > 300 ? { display: 'none' } : {}} /> <StyledUnderlined className="underline">Front End Developer</StyledUnderlined>. */}
             {/* Experienced with <StyledUnderlined className="underline">React</StyledUnderlined> and <StyledUnderlined className="underline">Redux</StyledUnderlined>, but I am always looking to learn something new. */}
             {/* Currently I am diving into Full Stack with <StyledUnderlined className="underline">Node</StyledUnderlined> and <StyledUnderlined className="underline">Golang</StyledUnderlined>. */}
-            <TitleWorkPlace>
-              <WorkPlace>Milkman</WorkPlace>
-              <Separator className="hide" />
-              <Period>Sept 2019 - Actual</Period>
-            </TitleWorkPlace>
+            <TitleEducation>
+              <University id="university">University of Padova</University>
+              <Master>Master Degree on Computer Engineering</Master>
+              <Graduation>Graduation: 110 cum Laude</Graduation>
+            </TitleEducation>
             <HorizontalLine className="hide" />
             <Paragraph>
-              It is an italian scale up, focused on delivery and last mile. I faced an paced environment with remote working.
+              It involves courses with deep theoretical content as well as several hours of laboratory.
+              Main courses are Machine Learning, Big Data, Algorithms, Web Application.
             </Paragraph>
-            <Paragraph>
-              Job involves creation, manteining and improving several webapps, using React, Redux and Cypress as testing tools.
-            </Paragraph>
-            <Paragraph>
-              Something else, like communication between team, self organization due to  remote working but also team organization.
-            </Paragraph>
+            <MasterThesis>Master Thesis</MasterThesis>
+            <ThesisName>
+              "On the use of the Silhoutte for cost based clustering".
+            </ThesisName>
           </StyledTextReveal>
         </Content>
       </Box>
@@ -307,4 +332,4 @@ const Work = () => {
   );
 };
 
-export default Work;
+export default Education;

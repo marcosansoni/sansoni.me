@@ -5,6 +5,8 @@ import Link from './pages/Link';
 import Landing from './pages/Landing';
 import About from './pages/About';
 import Cursor from './components/Cursor';
+import Work from './pages/Work';
+import Education from './pages/Education';
 
 const Page = styled.div`
   width: 100vw;
@@ -20,7 +22,14 @@ const Content = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  overflow: auto;
+  overflow: hidden;
+  animation: enableOverflow 3s forwards 3s;
+
+  @keyframes enableOverflow {
+    to {
+      overflow: auto;
+    }
+  }
 `;
 
 const App = () => {
@@ -48,6 +57,8 @@ const App = () => {
         <Content ref={contentRef}>
           <Landing ref={scrollRef} />
           <About />
+          <Work />
+          <Education />
         </Content>
       </Page>
     </Cursor>
