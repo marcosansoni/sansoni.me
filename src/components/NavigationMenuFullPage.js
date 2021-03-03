@@ -136,12 +136,12 @@ const NavigationMenuFullPage = () => {
     cursorRef.current.offsetParent.classList.remove('noMix');
   };
 
-  const handleClickAbout = () => {
+  const handleClickLink = (id) => {
     hamburgerRef.current?.click?.();
     handleToggle();
     handleLeaveLink();
     setTimeout(() => {
-      document.querySelector('#aboutPage').scrollIntoView({ behavior: 'smooth' });
+      document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
     }, 500);
   };
 
@@ -164,7 +164,7 @@ const NavigationMenuFullPage = () => {
           size={26}
           onMouseEnter={handleHoverLink}
           onMouseLeave={handleLeaveLink}
-          onClick={handleClickAbout}
+          onClick={() => handleClickLink('#aboutPage')}
         >
           ABOUT
         </MenuItem>
@@ -173,6 +173,7 @@ const NavigationMenuFullPage = () => {
           size={26}
           onMouseEnter={handleHoverLink}
           onMouseLeave={handleLeaveLink}
+          onClick={() => handleClickLink('#workPage')}
         >
           WORK
         </MenuItem>
@@ -181,6 +182,7 @@ const NavigationMenuFullPage = () => {
           size={26}
           onMouseEnter={handleHoverLink}
           onMouseLeave={handleLeaveLink}
+          onClick={() => handleClickLink('#educationPage')}
         >
           EDUCATION
         </MenuItem>

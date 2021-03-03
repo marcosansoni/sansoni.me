@@ -121,6 +121,10 @@ const Landing = forwardRef((props, ref) => {
     cursorRef.current.offsetParent.classList.remove('noMix');
   };
 
+  const handleClickLink = (id) => {
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <>
       <Container>
@@ -133,6 +137,7 @@ const Landing = forwardRef((props, ref) => {
               size={26}
               onMouseEnter={handleHover}
               onMouseLeave={handleLeave}
+              onClick={() => handleClickLink('#aboutPage')}
             >
               ABOUT
             </MenuItem>
@@ -141,6 +146,7 @@ const Landing = forwardRef((props, ref) => {
               size={26}
               onMouseEnter={handleHover}
               onMouseLeave={handleLeave}
+              onClick={() => handleClickLink('#workPage')}
             >
               WORK
             </MenuItem>
@@ -149,6 +155,7 @@ const Landing = forwardRef((props, ref) => {
               size={26}
               onMouseEnter={handleHover}
               onMouseLeave={handleLeave}
+              onClick={() => handleClickLink('#educationPage')}
             >
               EDUCATION
             </MenuItem>

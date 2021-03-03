@@ -64,6 +64,12 @@ const SocialLink = styled(MenuItem)`
   }
 `;
 
+const Anchor = styled.a`
+  text-decoration: unset;
+  color: inherit;
+  cursor: none;
+`;
+
 const Link = () => {
   const { ref } = useCursorRef();
 
@@ -82,9 +88,20 @@ const Link = () => {
   return (
     <Left>
       <Social>
-        <SocialLink size={16} rotation={-90} onMouseEnter={handleHover} onMouseLeave={handleLeave}>Github</SocialLink>
-        <SocialLink size={16} rotation={-90} onMouseEnter={handleHover} onMouseLeave={handleLeave}>LinkedIn</SocialLink>
-        <SocialLink size={16} rotation={-90} onMouseEnter={handleHover} onMouseLeave={handleLeave}>Mail</SocialLink>
+        <SocialLink
+          size={16}
+          rotation={-90}
+          onMouseEnter={handleHover}
+          onMouseLeave={handleLeave}
+        >
+          <Anchor href="https://github.com/marcosansoni" target="_blank">Github</Anchor>
+        </SocialLink>
+        <SocialLink size={16} rotation={-90} onMouseEnter={handleHover} onMouseLeave={handleLeave}>
+          <Anchor href="https://www.linkedin.com/in/marco-sansoni" target="_blank">LinkedIn</Anchor>
+        </SocialLink>
+        <SocialLink size={16} rotation={-90} onMouseEnter={handleHover} onMouseLeave={handleLeave}>
+          <Anchor href="mailto:marco.sansoni.1995@gmail.com">Email</Anchor>
+        </SocialLink>
       </Social>
     </Left>
   );
