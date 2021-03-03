@@ -297,7 +297,7 @@ const Education = () => {
         </Title>
         <Content>
           <StyledTextReveal timeline={textTimeline[0]} ref={textRef}>
-           <TitleEducation>
+            <TitleEducation>
               <University id="university">University of Padova</University>
               <Master>Master Degree on Computer Engineering</Master>
               <Graduation>Graduation: 110 cum Laude</Graduation>

@@ -7,7 +7,6 @@ import { Breakpoint, MediaQuerySelector } from '../utils/responsive';
 import Box from '../components/Box';
 import TitleBox from '../components/TitleBox';
 import TextReveal from '../components/TextReveal';
-import Color from '../assets/theme/Color';
 import useCursorRef from '../context/useCursorRef';
 
 const Container = styled.div`
