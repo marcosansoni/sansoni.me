@@ -92,25 +92,36 @@ const TextReveal = forwardRef((props, ref) => {
     textRef.current.style.opacity = 1;
 
     timeline
-      .addLabel('start')
-      .addLabel('switchtime')
+      .addLabel('switchTime')
       .set([
         ...textRef.current.querySelectorAll('div span'),
         ...textRef.current.querySelectorAll('.underline span'),
       ], {
         opacity: 1,
         paddingTop: '48px',
-      }, 'switchtime')
-      .staggerTo([
+      }, 'switchTime')
+      .to([
         ...textRef.current.querySelectorAll('div span'),
         ...textRef.current.querySelectorAll('.underline span'),
         ...textRef.current.querySelectorAll('.underline div'),
         ...textRef.current.querySelectorAll('.hide'),
-      ], timelineSettings.charsDuration, {
+      ], {
+        duration: timelineSettings.charsDuration,
         ease: Power3.easeOut,
         paddingTop: 0,
         opacity: 1,
-      }, timelineSettings.staggerValue, 'switchtime');
+        stagger: timelineSettings.staggerValue,
+      }, 'switchTime');
+    // .staggerTo([
+    //   ...textRef.current.querySelectorAll('div span'),
+    //   ...textRef.current.querySelectorAll('.underline span'),
+    //   ...textRef.current.querySelectorAll('.underline div'),
+    //   ...textRef.current.querySelectorAll('.hide'),
+    // ], timelineSettings.charsDuration, {
+    //   ease: Power3.easeOut,
+    //   paddingTop: 0,
+    //   opacity: 1,
+    // }, timelineSettings.staggerValue, 'switchtime');
   }, []);
 
   return (
@@ -126,14 +137,15 @@ const TextReveal = forwardRef((props, ref) => {
 });
 
 TextReveal.propTypes = {
-  children: PropTypes.element,
-  timeline: PropTypes.element.isRequired,
+  children: PropTypes.any,
+  timeline: PropTypes.object,
   style: PropTypes.object,
   className: PropTypes.string,
 };
 
 TextReveal.defaultProps = {
   children: undefined,
+  timeline: undefined,
   style: undefined,
   className: undefined,
 };

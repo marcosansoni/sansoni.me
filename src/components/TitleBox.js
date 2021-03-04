@@ -90,18 +90,33 @@ const TitleBox = (props) => {
 
   useEffect(() => {
     if (timeline) {
+      // .staggerFrom(covers.current, 0.3, {
+      //   scaleX: 0,
+      //   ease: Power3.easeOut,
+      //   transformOrigin: 'center left',
+      // }, 0.2)
+      // .set(menuRef.current, { opacity: 1 })
+      // .staggerTo(covers.current, 0.3, {
+      //   scaleX: 0,
+      //   ease: Power3.easeOut,
+      //   transformOrigin: 'center right',
+      // }, 0.2);
       timeline
-        .staggerFrom(covers.current, 0.3, {
+        .from(covers.current, {
           scaleX: 0,
+          duration: 0.3,
           ease: Power3.easeOut,
           transformOrigin: 'center left',
-        }, 0.2)
+          stagger: 0.2,
+        })
         .set(menuRef.current, { opacity: 1 })
-        .staggerTo(covers.current, 0.3, {
+        .to(covers.current, {
+          duration: 0.3,
           scaleX: 0,
           ease: Power3.easeOut,
           transformOrigin: 'center right',
-        }, 0.2);
+          stagger: 0.2,
+        });
     }
   }, [timeline]);
 
@@ -118,8 +133,8 @@ const TitleBox = (props) => {
 };
 
 TitleBox.propTypes = {
-  children: PropTypes.string,
-  timeline: PropTypes.element,
+  children: PropTypes.any,
+  timeline: PropTypes.object,
   style: PropTypes.object,
   className: PropTypes.string,
 };

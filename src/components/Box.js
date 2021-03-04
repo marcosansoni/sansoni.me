@@ -44,10 +44,12 @@ const Box = forwardRef((props, ref) => {
   useEffect(() => {
     timeline
       .addLabel('start')
-      .staggerTo(pathRef.current, 5, {
+      .to(pathRef.current, {
+        duration: 5,
         strokeDashoffset: 0,
         strokeWidth: 4,
         ease: Power3.easeOut,
+        stagger: 0,
       });
     timeline.play();
   }, []);
@@ -67,8 +69,8 @@ const Box = forwardRef((props, ref) => {
 Box.propTypes = {
   width: PropTypes.number,
   height: PropTypes.number,
-  children: PropTypes.element,
-  timeline: PropTypes.element.isRequired,
+  children: PropTypes.any,
+  timeline: PropTypes.object,
   style: PropTypes.object,
   className: PropTypes.string,
 };
@@ -77,6 +79,7 @@ Box.defaultProps = {
   width: 587,
   height: 420,
   children: undefined,
+  timeline: undefined,
   style: undefined,
   className: undefined,
 };

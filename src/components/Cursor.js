@@ -116,7 +116,7 @@ const Cursor = (props) => {
 };
 
 Cursor.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.any.isRequired,
 };
 
 export default Cursor;

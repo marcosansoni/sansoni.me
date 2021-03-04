@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import { Power3, TimelineLite } from 'gsap';
+import gsap, { Power3 } from 'gsap';
 import Hamburger from './Hamburger';
 import Color from '../assets/theme/Color';
 import { MediaQuerySelector } from '../utils/responsive';
@@ -80,24 +80,26 @@ const NavigationMenuFullPage = () => {
   const hamburgerRef = useRef();
   const { ref: cursorRef, handleLeave, handleHover } = useCursorRef();
 
-  const [timeline] = useState(new TimelineLite({ paused: true }));
+  const [timeline] = useState(gsap.timeline({ paused: true }));
 
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     if (timeline) {
       timeline
-        .staggerFrom(covers.current, 0.3, {
+        .from(covers.current, {
+          duration: 0.3,
           scaleX: 0,
           ease: Power3.easeOut,
           transformOrigin: 'center left',
-        }, 0.2)
+        })
         .set(menuRef.current, { opacity: 1, zIndex: 10 })
-        .staggerTo(covers.current, 0.3, {
+        .to(covers.current, {
+          duration: 0.3,
           scaleX: 0,
           ease: Power3.easeOut,
           transformOrigin: 'center right',
-        }, 0.2);
+        }, 0.4);
     }
   }, [timeline]);
 

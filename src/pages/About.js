@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import styled from 'styled-components';
-import { TimelineLite } from 'gsap';
+import gsap from 'gsap';
 import ResizeObserver from 'resize-observer-polyfill';
 import { useInView } from 'react-intersection-observer';
 import { Breakpoint, MediaQuerySelector } from '../utils/responsive';
@@ -72,11 +72,10 @@ const Content = styled.div`
 const About = () => {
   const textRef = useRef();
   const { handleLeave, handleHover } = useCursorRef();
-  const titleTimeline = useState(new TimelineLite({ paused: false }));
-  const boxTimeline = useState(new TimelineLite({ paused: false }));
-  const textTimeline = useState(new TimelineLite({ paused: false }));
-
-  const masterTimeline = useState(new TimelineLite({ paused: true }));
+  const titleTimeline = useState(gsap.timeline({ paused: false }));
+  const boxTimeline = useState(gsap.timeline({ paused: false }));
+  const textTimeline = useState(gsap.timeline({ paused: false }));
+  const masterTimeline = useState(gsap.timeline({ paused: true }));
 
   const [width, setWidth] = useState(520);
   const [height, setHeight] = useState(420);

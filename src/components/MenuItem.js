@@ -1,7 +1,7 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import { TimelineLite } from 'gsap/all';
 import PropTypes from 'prop-types';
+import gsap from 'gsap';
 import Color from '../assets/theme/Color';
 import { MediaQuerySelector } from '../utils/responsive';
 
@@ -16,17 +16,19 @@ const Container = styled.a`
   height: ${(p) => `${p.size}px`};
   font-size: ${(p) => `${p.size}px`};
   transform: ${(p) => `rotate(${p.rotation}deg)`};
-  
-  :hover{
-    #text{
+  text-decoration: none;
+  cursor: none;
+
+  :hover {
+    #text {
       color: ${Color.GRAY_DARK};
     }
-    
-    #line{
-      opacity:1
+
+    #line {
+      opacity: 1
     }
   }
-  
+
   ${MediaQuerySelector.SMALL} {
     height: ${(p) => `${p.size * 0.8}px`};
     font-size: ${(p) => `${p.size * 0.8}px`};
@@ -53,34 +55,37 @@ const Box = styled.div`
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  
-  svg{
+
+  svg {
     height: 0;
     width: 0;
   }
 `;
 
 const MenuItem = (props) => {
-  const { size, children, style, className, rotation, ...otherProps } = props;
+  const {
+    size,
+    children,
+    style,
+    className,
+    rotation,
+    href,
+    target,
+    ...otherProps
+  } = props;
 
   const lineRef = useRef();
-  const textRef = useRef();
   const turbulenceRef = useRef();
   const id = useRef(Math.random() * 10000000);
   const primitiveValues = useRef({ turbulence: 0 });
 
   const [timeline, setTimeline] = useState();
 
-  const [height, setHeight] = useState();
-
-  useEffect(() => {
-    const h = textRef.current?.offsetHeight;
-    if (h && h !== height) setHeight(h);
-  }, [textRef]);
+  const [height, setHeight] = useState(0);
 
   useEffect(() => {
     if (lineRef?.current && !timeline) {
-      setTimeline(new TimelineLite({
+      setTimeline(gsap.timeline({
         paused: true,
         onStart: () => {
           lineRef.current.style.filter = `url(#filter-${id.current})`;
@@ -97,7 +102,8 @@ const MenuItem = (props) => {
 
   useEffect(() => {
     if (timeline) {
-      timeline.to(primitiveValues.current, 0.4, {
+      timeline.to(primitiveValues.current, {
+        duration: 0.4,
         startAt: { turbulence: 0.09 },
         turbulence: 0,
       });
@@ -110,7 +116,13 @@ const MenuItem = (props) => {
         <svg>
           <defs>
             <filter id={`filter-${id.current}`}>
-              <feTurbulence type="fractalNoise" ref={turbulenceRef} baseFrequency="0" numOctaves="1" result="warp" />
+              <feTurbulence
+                type="fractalNoise"
+                ref={turbulenceRef}
+                baseFrequency="0"
+                numOctaves="1"
+                result="warp"
+              />
               <feOffset dx="0" result="warpOffset" />
               <feDisplacementMap
                 xChannelSelector="R"
@@ -122,8 +134,22 @@ const MenuItem = (props) => {
             </filter>
           </defs>
         </svg>
-        <Container onMouseEnter={() => timeline.play(0)} size={size} rotation={rotation}>
-          <Item id="text" size={size} ref={textRef}>{children}</Item>
+        <Container
+          onMouseEnter={() => timeline.play(0)}
+          size={size}
+          rotation={rotation}
+          href={href}
+          target={target}
+        >
+          <Item
+            id="text"
+            size={size}
+            ref={(ref) => {
+              const h = ref?.offsetHeight;
+              if (h && h !== height) setHeight(h);
+            }}
+          >{children}
+          </Item>
           <Line id="line" ref={lineRef} height={height / 4} top={(3 * height) / 8} />
         </Container>
       </Box>
@@ -137,6 +163,8 @@ MenuItem.propTypes = {
   style: PropTypes.object,
   className: PropTypes.string,
   rotation: PropTypes.number,
+  href: PropTypes.string,
+  target: PropTypes.string,
 };
 
 MenuItem.defaultProps = {
@@ -144,6 +172,8 @@ MenuItem.defaultProps = {
   children: undefined,
   style: undefined,
   className: undefined,
+  href: undefined,
+  target: undefined,
   rotation: 0,
 };
 

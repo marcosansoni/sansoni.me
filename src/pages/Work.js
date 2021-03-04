@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import styled from 'styled-components';
-import { TimelineLite } from 'gsap';
+import gsap from 'gsap';
 import ResizeObserver from 'resize-observer-polyfill';
 import { useInView } from 'react-intersection-observer';
 import { Breakpoint, MediaQuerySelector } from '../utils/responsive';
@@ -209,14 +209,13 @@ const StyledTitle = styled(TitleBox)`
 const Work = () => {
   const textRef = useRef();
   const { handleLeave, handleHover } = useCursorRef();
-  const titleTimeline = useState(new TimelineLite({ paused: false }));
-  const boxTimeline = useState(new TimelineLite({ paused: false }));
-  const textTimeline = useState(new TimelineLite({ paused: false }));
-
-  const masterTimeline = useState(new TimelineLite({ paused: true }));
+  const titleTimeline = useState(gsap.timeline({ paused: false }));
+  const boxTimeline = useState(gsap.timeline({ paused: false }));
+  const textTimeline = useState(gsap.timeline({ paused: false }));
+  const masterTimeline = useState(gsap.timeline({ paused: true }));
 
   const [width, setWidth] = useState(580);
-  const [height, setHeight] = useState(510);
+  const [height, setHeight] = useState(490);
 
   const [ref, inView] = useInView({
     threshold: 0.6,
@@ -243,16 +242,16 @@ const Work = () => {
       const { width: widthWindow } = entry.contentRect;
       if (widthWindow <= Number(Breakpoint.SM)) {
         const currentWidth = Math.min(330, widthWindow - 128);
-        const incrementalHeight = (330 - currentWidth) ** 1.15;
+        const incrementalHeight = (330 - currentWidth) ** 1.12;
         setWidth(currentWidth);
-        setHeight(360 + incrementalHeight);
+        setHeight(340 + incrementalHeight);
       } else if (widthWindow <= Number(Breakpoint.LG)
         && widthWindow >= Number(Breakpoint.SM)) {
         setWidth(440);
-        setHeight(470);
+        setHeight(450);
       } else {
         setWidth(580);
-        setHeight(510);
+        setHeight(490);
       }
     }),
   ), []);
@@ -285,10 +284,10 @@ const Work = () => {
               It is an italian scale up, focused on delivery and last mile. I faced an paced environment with remote working.
             </Paragraph>
             <Paragraph>
-              Job involves creation, manteining and improving several webapps, using React, Redux and Cypress as testing tools.
+              Job involves creation, maintaining and improving several webapps, using React, Redux and Cypress as testing tools.
             </Paragraph>
             <Paragraph>
-              Something else, like communication between team, self organization due to  remote working but also team organization.
+              As a remote work, It requires excellent self organization and communication skills.
             </Paragraph>
           </StyledTextReveal>
         </Content>

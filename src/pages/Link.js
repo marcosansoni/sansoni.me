@@ -21,11 +21,11 @@ const Left = styled.div`
     }
   }
 
-  ${MediaQuerySelector.SMALL}{
+  ${MediaQuerySelector.SMALL} {
     width: 48px;
   }
-  
-  ${MediaQuerySelector.MEDIUM}{
+
+  ${MediaQuerySelector.MEDIUM} {
     width: 64px;
   }
 
@@ -39,11 +39,11 @@ const Social = styled.div`
   align-items: center;
   padding-bottom: 64px;
 
-  ${MediaQuerySelector.SMALL}{
+  ${MediaQuerySelector.SMALL} {
     padding-bottom: 36px;
   }
 
-  ${MediaQuerySelector.MEDIUM}{
+  ${MediaQuerySelector.MEDIUM} {
     padding-bottom: 48px;
   }
 `;
@@ -55,19 +55,13 @@ const SocialLink = styled(MenuItem)`
     padding-bottom: 0;
   }
 
-  ${MediaQuerySelector.SMALL}{
+  ${MediaQuerySelector.SMALL} {
     padding-bottom: 64px;
   }
 
-  ${MediaQuerySelector.MEDIUM}{
+  ${MediaQuerySelector.MEDIUM} {
     padding-bottom: 72px;
   }
-`;
-
-const Anchor = styled.a`
-  text-decoration: unset;
-  color: inherit;
-  cursor: none;
 `;
 
 const Link = () => {
@@ -93,14 +87,29 @@ const Link = () => {
           rotation={-90}
           onMouseEnter={handleHover}
           onMouseLeave={handleLeave}
+          href="https://github.com/marcosansoni"
+          target="_blank"
         >
-          <Anchor href="https://github.com/marcosansoni" target="_blank">Github</Anchor>
+          Github
         </SocialLink>
-        <SocialLink size={16} rotation={-90} onMouseEnter={handleHover} onMouseLeave={handleLeave}>
-          <Anchor href="https://www.linkedin.com/in/marco-sansoni" target="_blank">LinkedIn</Anchor>
+        <SocialLink
+          size={16}
+          rotation={-90}
+          onMouseEnter={handleHover}
+          onMouseLeave={handleLeave}
+          href="https://www.linkedin.com/in/marco-sansoni"
+          target="_blank"
+        >
+          LinkedIn
         </SocialLink>
-        <SocialLink size={16} rotation={-90} onMouseEnter={handleHover} onMouseLeave={handleLeave}>
-          <Anchor href="mailto:marco.sansoni.1995@gmail.com">Email</Anchor>
+        <SocialLink
+          size={16}
+          rotation={-90}
+          onMouseEnter={handleHover}
+          onMouseLeave={handleLeave}
+          href="mailto:marco.sansoni.1995@gmail.com"
+        >
+          Email
         </SocialLink>
       </Social>
     </Left>
