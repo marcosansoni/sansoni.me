@@ -24,6 +24,7 @@ html, body {
     min-height: 100%; /* requires for 'mix-blend-mode' */
     color: #000;
     background-color: #fff;
+    overflow-x: hidden;
 }
 
 ::-webkit-scrollbar {

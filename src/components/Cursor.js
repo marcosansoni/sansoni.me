@@ -6,20 +6,20 @@ import Color from '../assets/theme/Color';
 
 const GlobalStyle = createGlobalStyle`
   .link {
-    border: ${`3px solid ${Color.DARK_ORANGE}`};
+    border: ${`3px solid ${Color.DARK_ORANGE}`} !important;
   }
-  
-  .big{
-    width: 96px;
-    height: 96px;
+
+  .big {
+    width: 96px !important;
+    height: 96px !important;
   }
-  
+
   .text {
-    background-color: ${Color.WHITE};
+    background-color: ${Color.WHITE} !important;
   }
-  
+
   .noMix {
-    mix-blend-mode: normal;
+    mix-blend-mode: normal !important;
   }
 `;
 
@@ -58,6 +58,16 @@ const Cursor = (props) => {
   const mouseY = useRef(-100); // mouse pointer's coordinates
   const posX = useRef(0); // cursor's coordinates
   const posY = useRef(0); // cursor's coordinates
+
+  const isMobile = () => (
+    navigator.userAgent.match(/Android/i)
+    || navigator.userAgent.match(/webOS/i)
+    || navigator.userAgent.match(/iPhone/i)
+    || navigator.userAgent.match(/iPad/i)
+    || navigator.userAgent.match(/iPod/i)
+    || navigator.userAgent.match(/BlackBerry/i)
+    || navigator.userAgent.match(/Windows Phone/i)
+  );
 
   useEffect(() => {
     const updateCoordinates = (e) => {
@@ -99,7 +109,12 @@ const Cursor = (props) => {
       requestAnimationFrame(loop);
     };
 
-    loop();
+    if (!isMobile()) {
+      loop();
+    } else {
+      cursorRef.current.style.top = '-100px';
+      cursorRef.current.style.left = '-100px';
+    }
 
     return () => window.removeEventListener('mousemove', updateCoordinates);
   }, []);

@@ -27,7 +27,7 @@ const Content = styled.div`
 
   @keyframes enableOverflow {
     to {
-      overflow: auto;
+      overflow-y: auto;
     }
   }
 `;
