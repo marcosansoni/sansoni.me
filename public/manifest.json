@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Marco Sansoni",
+  "name": "Portfolio of Marco Sansoni",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,15 +8,10 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "logo196.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "196x196"
     },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
-    }
   ],
   "start_url": ".",
   "display": "standalone",
