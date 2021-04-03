@@ -12,7 +12,7 @@
     "react-scripts": "4.0.3",
     "resize-observer-polyfill": "^1.5.1",
     "splitting": "^1.0.6",
-    "styled-components": "^5.2.1"
+    "styled-components": "^5.2.3"
   },
   "scripts": {
     "start": "react-scripts start",
